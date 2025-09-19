@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=ca08ff4fb8db5924994dec343cab0955&amp;type=3#MainMenuStyle" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Scenes/art-assets/spr_purple_bkg.png?fileID=21300000&amp;guid=528872673df2b244880a956d4eed1364&amp;type=3#spr_purple_bkg&quot;); -unity-background-scale-mode: scale-and-crop; background-color: rgba(0, 0, 0, 0.37); -unity-background-image-tint-color: rgb(159, 159, 159);">
+        <ui:Label tabindex="-1" text="Cosmic Thread" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="header" style="width: auto; height: auto; font-size: 100px; align-self: center; justify-content: center; align-items: center; -unity-text-align: upper-center; -unity-text-outline-width: 4px; -unity-text-outline-color: rgb(0, 0, 0); color: rgb(214, 122, 239);" />
+        <ui:VisualElement class="spacer" />
+        <ui:Button text="Start Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" class="button" style="width: auto; height: auto; align-self: center; background-color: rgba(255, 255, 255, 0); -unity-font-definition: initial;" />
+        <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" class="button" style="align-self: center; width: auto; height: auto;" />
+        <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="button" />
+    </ui:VisualElement>
+</ui:UXML>
