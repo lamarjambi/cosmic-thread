@@ -13,11 +13,15 @@ public class JamxCase : HoverableCase, IPointerClickHandler
     public GameObject descriptionPanel;
     public TMPro.TextMeshProUGUI descriptionText;
     
+    [Header("Description Positioning")]
+    public float descriptionWidth = 400f;
+    public Vector2 descriptionPosition = new Vector2(-50, -310);
+    
     private AudioSource audioSource;
     
     protected override void Start()
     {
-        base.Start(); // Call parent Start
+        base.Start();
         
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -33,18 +37,26 @@ public class JamxCase : HoverableCase, IPointerClickHandler
     
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        base.OnPointerEnter(eventData); // Call parent hover behavior
+        base.OnPointerEnter(eventData);
         
-        // Show description
         if (descriptionPanel != null)
+        {
+            RectTransform rectTransform = descriptionPanel.GetComponent<RectTransform>();
+            
+            // Set fixed width
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, descriptionWidth);
+            
+            // Set position
+            rectTransform.anchoredPosition = descriptionPosition;
+            
             descriptionPanel.SetActive(true);
+        }
     }
     
     public override void OnPointerExit(PointerEventData eventData)
     {
-        base.OnPointerExit(eventData); // Call parent hover exit behavior
+        base.OnPointerExit(eventData);
         
-        // Hide description
         if (descriptionPanel != null)
             descriptionPanel.SetActive(false);
     }
@@ -53,11 +65,9 @@ public class JamxCase : HoverableCase, IPointerClickHandler
     {
         if (hovered && eventData.button == PointerEventData.InputButton.Left)
         {
-            // Play sound
             if (buttonSound != null && audioSource != null)
                 audioSource.PlayOneShot(buttonSound);
                 
-            // Change scene
             SceneManager.LoadScene(targetScene);
         }
     }

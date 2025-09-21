@@ -20,7 +20,7 @@ public class HoverableCase : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         baseScale = transform.localScale;
         targetScale = baseScale;
-        targetAngle = baseAngle;
+        targetAngle = baseAngle;        
     }
     
     protected virtual void Update()
