@@ -44,8 +44,8 @@ public class MainMenu : MonoBehaviour
     private void OnStartButtonClick(ClickEvent evt) {
         Debug.Log("Loading Cases Scene through Loading Screen...");
         
-        // Set target scene and go to loading screen
-        PlayerPrefs.SetString("TargetScene", "BackstoryScene");
+        PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("LoadingScene");
     }
 

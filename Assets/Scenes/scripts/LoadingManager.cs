@@ -16,8 +16,21 @@ public class LoadingManager : MonoBehaviour
     
     void Start()
     {
-        // Get the target scene from PlayerPrefs (set by the case button)
-        targetScene = PlayerPrefs.GetString("TargetScene", "BackstoryScene");
+        string previousScene = PlayerPrefs.GetString("PreviousScene", "");
+        
+        if (previousScene == "MainMenu" || previousScene == "MainMenu") 
+        {
+            targetScene = "BackstoryScene";
+        }
+        else if (previousScene == "CasesScene" || previousScene == "CasesScene") 
+        {
+            targetScene = "TutorialScene";
+        }
+        else
+        {
+            // Default fallback
+            targetScene = "BackstoryScene";
+        }
         
         StartCoroutine(LoadSceneAsync());
     }

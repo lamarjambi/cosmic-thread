@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class ZiggyCase : HoverableCase, IPointerClickHandler
 {
     [Header("Case Settings")]
-    public string targetScene = "ZiggyScene";
+    public string targetScene = "LoadingScene";
     public string description = "Case 01: Something something";
     public AudioClip buttonSound;
     
@@ -63,11 +63,14 @@ public class ZiggyCase : HoverableCase, IPointerClickHandler
     
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if (hovered && eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             if (buttonSound != null && audioSource != null)
                 audioSource.PlayOneShot(buttonSound);
-                
+            
+            PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
+            PlayerPrefs.Save();
+            
             SceneManager.LoadScene(targetScene);
         }
     }
