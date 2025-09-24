@@ -69,7 +69,6 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
     
     public void HideInstructor()
     {
-        SetInstructorVisible(false);
         if (greyOverlay != null) greyOverlay.SetActive(false);
         
         // put tutorial overlay behind everything (step 3 - ungrey everything)
@@ -286,7 +285,7 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         if (tutorialOverlayParent != null)
         {
             // move each board item to be siblings of tutorialOverlay, positioned after it
-            // this puts them above the tutorialOverlay (including greyTutorial) but below instructions
+            // this puts them above the grey overlay but below the instructor
             foreach (var item in boardItems)
             {
                 if (item != null)
@@ -296,6 +295,15 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
                     item.transform.SetSiblingIndex(tutorialOverlayParent.GetSiblingIndex());
                 }
             }
+            
+            // ensure the instructions parent (which contains instructor) stays on top
+            if (instructor != null && instructor.transform.parent != null)
+            {
+                instructor.transform.parent.SetAsLastSibling();
+            }
+            
+            // put tutorial overlay behind everything (but instructor stays on top)
+            PutOverlayBehindEverything();
         }
     }
     
