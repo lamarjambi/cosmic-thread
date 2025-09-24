@@ -27,6 +27,7 @@ public class ItemTutorial : MonoBehaviour, IPointerClickHandler
     
     // events
     public System.Action OnItemClicked;
+    public System.Action OnExitClicked;
     
     void Start()
     {
@@ -89,6 +90,9 @@ public class ItemTutorial : MonoBehaviour, IPointerClickHandler
         {
             detailPanel.SetActive(false);
         }
+        
+        // notify tutorial system that exit was clicked
+        OnExitClicked?.Invoke();
     }
     
     public void SetInteractable(bool interactable)

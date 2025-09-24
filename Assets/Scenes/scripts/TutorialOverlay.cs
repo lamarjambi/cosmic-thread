@@ -24,6 +24,7 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
     // tutorial state
     private MysteryTutorial gameManager;
     private bool waitingForItemClick = false;
+    private bool waitingForExitClick = false;
     private bool speechBubbleClickable = false;
     
     // tutorial step messages
@@ -80,13 +81,32 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         if (!waitingForItemClick) return;
         
         waitingForItemClick = false;
+        waitingForExitClick = true;
         
-        // disable clicking during transition
+        // disable clicking on board items during transition
         foreach (var item in boardItems)
         {
             item.SetInteractable(false);
             item.OnItemClicked -= OnDemoItemClicked;
+            // subscribe to exit click events
+            item.OnExitClicked += OnExitClicked;
         }
+    }
+    
+    void OnExitClicked()
+    {
+        if (!waitingForExitClick) return;
+        
+        waitingForExitClick = false;
+        
+        // unsubscribe from exit click events
+        foreach (var item in boardItems)
+        {
+            item.OnExitClicked -= OnExitClicked;
+        }
+        
+        // move all items on top of tutorial overlay and complete tutorial
+        MoveAllItemsOnTopOfOverlay();
         
         // advance to next step after a short delay
         StartCoroutine(AdvanceAfterInspectionDemo());
@@ -248,6 +268,24 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         if (tutorialOverlayParent != null)
         {
             // move each dummy item to be siblings of tutorialOverlay, positioned after it
+            // this puts them above the tutorialOverlay (including greyTutorial) but below instructions
+            foreach (var item in boardItems)
+            {
+                if (item != null)
+                {
+                    // move item to be a sibling after tutorialOverlay in Canvas children
+                    item.transform.SetParent(tutorialOverlayParent.parent, false);
+                    item.transform.SetSiblingIndex(tutorialOverlayParent.GetSiblingIndex());
+                }
+            }
+        }
+    }
+    
+    void MoveAllItemsOnTopOfOverlay()
+    {
+        if (tutorialOverlayParent != null)
+        {
+            // move each board item to be siblings of tutorialOverlay, positioned after it
             // this puts them above the tutorialOverlay (including greyTutorial) but below instructions
             foreach (var item in boardItems)
             {
