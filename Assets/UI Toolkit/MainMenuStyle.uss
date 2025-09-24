@@ -13,7 +13,7 @@
     -unity-font-definition: initial;
     width: auto;
     height: auto;
-    -unity-text-align: middle-center; /* Add this line */
+    -unity-text-align: middle-center;
 }
 
 .button {
@@ -23,8 +23,8 @@
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/Scenes/fonts/COSMDD__.TTF?fileID=12800000&guid=b139303ef3493ee429ad8770eb599ce4&type=3#COSMDD__");
     font-size: 60px;
-    color: rgb(255, 255, 255);
-    -unity-text-outline-width: 2px;
+    color: rgb(114, 243, 101);
+    -unity-text-outline-width: 3px;
     -unity-text-outline-color: rgb(0, 0, 0);
     transition-duration: 0.25s;
     margin: 20px 0;
@@ -37,9 +37,15 @@
 .button:hover {
     scale: 1.1 1.1;
     -unity-background-image-tint-color: rgb(255, 221, 0);
-    color: rgb(255, 221, 0);
+    color: rgb(242, 217, 82);
 }
 
 .spacer {
     height: 30px;
+}
+
+#TitleLogo {
+    align-self: center;
+    height: 400px;
+    width: 443px;
 }
