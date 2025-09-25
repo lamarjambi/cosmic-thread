@@ -45,6 +45,7 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         
         // initialize ui state
         if (greyOverlay != null) greyOverlay.SetActive(true);
+        if (modeIndicator != null) modeIndicator.gameObject.SetActive(false);
         
         SetAllItemsGreyedOut(true);
     }
@@ -91,6 +92,7 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         SetInstructorVisible(true);
         SetSpeechBubble(tutorialMessages[2], true); // show click to continue
         SetModeIndicator("Inspect Mode");
+        ShowModeIndicator(true);
     }
     
     public void ShowStep3TabInstruction()
@@ -103,6 +105,7 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
     {
         SetSpeechBubble(tutorialMessages[4], false); // hide click to continue, must shift+click
         SetModeIndicator("Thread Mode");
+        ShowModeIndicator(true);
         waitingForShiftClick = true;
         
         // enable clicking on board items for shift+click
@@ -206,6 +209,11 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
     void SetModeIndicator(string mode)
     {
         if (modeIndicator != null) modeIndicator.text = mode;
+    }
+    
+    void ShowModeIndicator(bool show)
+    {
+        if (modeIndicator != null) modeIndicator.gameObject.SetActive(show);
     }
     
     void SetSpeechBubble(string message, bool showClickToContinue)
