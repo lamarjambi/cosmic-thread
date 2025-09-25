@@ -11,6 +11,7 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
     public TMPro.TextMeshProUGUI instructionText;
     public GameObject greyOverlay; // panel that covers the screen
     public GameObject clickToContinueIndicator; // shows "Click to continue" text
+    public TMPro.TextMeshProUGUI modeIndicator; // shows current mode (Inspect/Thread)
     
     [Header("Items to Highlight")]
     public ItemTutorial[] boardItems; // dummy, dummy2, dummy3
@@ -26,11 +27,16 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
     private bool waitingForItemClick = false;
     private bool waitingForExitClick = false;
     private bool speechBubbleClickable = false;
+    private bool waitingForTabPress = false;
+    private bool waitingForShiftClick = false;
     
     // tutorial step messages
     private readonly string[] tutorialMessages = {
         "Welcome to Cosmic Thread! I'll teach you how to solve mysteries.",
-        "Click any of the items to investigate the case. Look closely for clues!"
+        "Click any of the items to investigate the case. Look closely for clues!",
+        "You are currently in Inspect Mode! That's how you were able to click on the items", // player should click on the bubble to proceed in text
+        "To exit Inspect Mode, press TAB and enter Thread Mode",
+        "Connect the clues that you think are related to each other by holding shift and clicking the items!"
     };
     
     void Start()
@@ -41,6 +47,19 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         if (greyOverlay != null) greyOverlay.SetActive(true);
         
         SetAllItemsGreyedOut(true);
+    }
+    
+    void Update()
+    {
+        // handle TAB key press for mode switching
+        if (waitingForTabPress && Input.GetKeyDown(KeyCode.Tab))
+        {
+            waitingForTabPress = false;
+            if (gameManager != null)
+            {
+                gameManager.OnTabPressed();
+            }
+        }
     }
     
     public void ShowStep1Introduction()
@@ -64,6 +83,33 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         {
             item.SetInteractable(true);
             item.OnItemClicked += OnDemoItemClicked;
+        }
+    }
+    
+    public void ShowStep3ModeIntroduction()
+    {
+        SetInstructorVisible(true);
+        SetSpeechBubble(tutorialMessages[2], true); // show click to continue
+        SetModeIndicator("Inspect Mode");
+    }
+    
+    public void ShowStep3TabInstruction()
+    {
+        SetSpeechBubble(tutorialMessages[3], false); // hide click to continue, must press TAB
+        waitingForTabPress = true;
+    }
+    
+    public void ShowStep3ThreadModeInstruction()
+    {
+        SetSpeechBubble(tutorialMessages[4], false); // hide click to continue, must shift+click
+        SetModeIndicator("Thread Mode");
+        waitingForShiftClick = true;
+        
+        // enable clicking on board items for shift+click
+        foreach (var item in boardItems)
+        {
+            item.SetInteractable(true);
+            item.OnItemClicked += OnShiftClickDemo;
         }
     }
     
@@ -111,6 +157,26 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         StartCoroutine(AdvanceAfterInspectionDemo());
     }
     
+    void OnShiftClickDemo()
+    {
+        if (!waitingForShiftClick) return;
+        
+        // check if shift is being held
+        if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift)) return;
+        
+        waitingForShiftClick = false;
+        
+        // disable clicking during transition
+        foreach (var item in boardItems)
+        {
+            item.SetInteractable(false);
+            item.OnItemClicked -= OnShiftClickDemo;
+        }
+        
+        // advance to next step after a short delay
+        StartCoroutine(AdvanceAfterShiftClickDemo());
+    }
+    
     IEnumerator AdvanceAfterInspectionDemo()
     {
         yield return new WaitForSeconds(1f);
@@ -121,10 +187,25 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         }
     }
     
+    IEnumerator AdvanceAfterShiftClickDemo()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        if (gameManager != null)
+        {
+            gameManager.OnShiftClickDemoComplete();
+        }
+    }
+    
     
     void SetInstructorVisible(bool visible)
     {
         if (instructor != null) instructor.SetActive(visible);
+    }
+    
+    void SetModeIndicator(string mode)
+    {
+        if (modeIndicator != null) modeIndicator.text = mode;
     }
     
     void SetSpeechBubble(string message, bool showClickToContinue)
@@ -309,6 +390,12 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
     
     void PutOverlayBehindEverything()
     {
+        if (tutorialOverlayParent != null)
+        {
+            // move tutorialOverlay to be the first child (behind everything else)
+            tutorialOverlayParent.SetAsFirstSibling();
+        }
+        
         if (tutorialCanvas != null)
         {
             // set tutorial canvas to render behind everything
