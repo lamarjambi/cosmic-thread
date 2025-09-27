@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+// this script is for tutorial UI (effects, hovers, smoothness, etc.)
+
 public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI References")]
@@ -206,14 +208,23 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         if (instructor != null) instructor.SetActive(visible);
     }
     
-    void SetModeIndicator(string mode)
+    public void SetModeIndicator(string mode)
     {
         if (modeIndicator != null) modeIndicator.text = mode;
     }
     
-    void ShowModeIndicator(bool show)
+    public void ShowModeIndicator(bool show)
     {
-        if (modeIndicator != null) modeIndicator.gameObject.SetActive(show);
+        if (modeIndicator != null) 
+        {
+            modeIndicator.gameObject.SetActive(show);
+            if (show)
+            {
+                Debug.Log("Starting flash animation for mode indicator");
+                // start flashing animation when showing the mode indicator
+                StartCoroutine(FlashModeIndicator());
+            }
+        }
     }
     
     void SetSpeechBubble(string message, bool showClickToContinue)
@@ -326,6 +337,41 @@ public class TutorialOverlay : MonoBehaviour, IPointerClickHandler
         
         cg.alpha = endAlpha;
         if (!fadeIn) greyOverlay.SetActive(false);
+    }
+    
+    IEnumerator FlashModeIndicator()
+    {
+        if (modeIndicator == null) 
+        {
+            Debug.Log("ModeIndicator is null, cannot flash");
+            yield break;
+        }
+        
+        Debug.Log("Flash animation started");
+        Color originalColor = modeIndicator.color;
+        float flashDuration = 2f; // total duration of flashing
+        float flashSpeed = 3f; // how fast it flashes (increased for more noticeable effect)
+        
+        float elapsed = 0f;
+        while (elapsed < flashDuration)
+        {
+            elapsed += Time.deltaTime;
+            
+            // create flashing effect by oscillating between original color and bright yellow
+            float flashValue = Mathf.PingPong(elapsed * flashSpeed, 1f);
+            Color flashColor = Color.Lerp(originalColor, Color.yellow, flashValue);
+            
+            // force update the color
+            modeIndicator.color = flashColor;
+            modeIndicator.ForceMeshUpdate(); // ensure TextMeshPro updates
+            
+            yield return null;
+        }
+        
+        // ensure it returns to original color
+        modeIndicator.color = originalColor;
+        modeIndicator.ForceMeshUpdate();
+        Debug.Log("Flash animation completed");
     }
     
     // handle speech bubble clicks

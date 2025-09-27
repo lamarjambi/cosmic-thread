@@ -28,6 +28,7 @@ public class ItemTutorial : MonoBehaviour, IPointerClickHandler
     // events
     public System.Action OnItemClicked;
     public System.Action OnExitClicked;
+    public System.Action<ItemTutorial> OnThreadModeClick;
     
     void Start()
     {
@@ -69,9 +70,37 @@ public class ItemTutorial : MonoBehaviour, IPointerClickHandler
     {
         if (!isInteractable) return;
         
-        // handle inspection click - show details and notify tutorial
-        ShowDetails();
-        OnItemClicked?.Invoke();
+        // Get the game manager to check thread mode
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<MysteryTutorial>();
+        }
+        
+        if (gameManager != null)
+        {
+            // In thread mode: only allow shift+click for connections
+            if (gameManager.threadMode)
+            {
+                // Only handle thread mode connections if shift is held
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    OnThreadModeClick?.Invoke(this);
+                }
+                // If in thread mode but shift not held, do nothing (no inspection)
+            }
+            else
+            {
+                // In inspect mode: normal inspection behavior
+                ShowDetails();
+                OnItemClicked?.Invoke();
+            }
+        }
+        else
+        {
+            // Fallback: normal inspection behavior if no game manager found
+            ShowDetails();
+            OnItemClicked?.Invoke();
+        }
     }
     
     public void ShowDetails()
