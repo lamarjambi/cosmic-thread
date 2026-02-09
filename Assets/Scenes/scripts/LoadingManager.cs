@@ -10,7 +10,7 @@ public class LoadingManager : MonoBehaviour
     public TMPro.TextMeshProUGUI loadingText;
     
     [Header("Loading Settings")]
-    public float minimumLoadTime = 2f; // Minimum time to show loading screen
+    public float minimumLoadTime = 2f; 
     
     private string targetScene;
     
@@ -24,7 +24,7 @@ public class LoadingManager : MonoBehaviour
         }
         else if (previousScene == "CasesScene" || previousScene == "CasesScene") 
         {
-            targetScene = "TutorialScene";
+            targetScene = "ZiggyScene";
         }
         else
         {
@@ -40,9 +40,8 @@ public class LoadingManager : MonoBehaviour
         float startTime = Time.time;
         float fakeProgress = 0f;
         
-        // Start loading the target scene
         AsyncOperation operation = SceneManager.LoadSceneAsync(targetScene);
-        operation.allowSceneActivation = false; // Don't activate immediately
+        operation.allowSceneActivation = false; 
         
         // Update progress bar while loading
         while (!operation.isDone)

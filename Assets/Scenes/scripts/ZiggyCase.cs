@@ -27,7 +27,6 @@ public class ZiggyCase : HoverableCase, IPointerClickHandler
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
             
-        // Setup description UI
         if (descriptionText != null)
             descriptionText.text = description;
             
