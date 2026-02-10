@@ -19,6 +19,12 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log("Clicked on " + gameObject.name);
         ShowEvidence();
+
+        // for tutorialManager.cs
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.OnCardClicked();
+        }
     }
     
     private void ShowEvidence()
