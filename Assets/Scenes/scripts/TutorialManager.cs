@@ -13,7 +13,7 @@ public class TutorialManager : MonoBehaviour
 
     void Awake()
     {
-        Instance = this; // singleton
+        Instance = this; // singleton initiation
     }
 
     void Update()

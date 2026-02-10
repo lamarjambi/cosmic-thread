@@ -6,7 +6,7 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
 {
     [Header("Evidence Display")]
     [SerializeField] private GameObject evidencePanel;
-    [SerializeField] private Image evidenceImage;
+    [SerializeField] private Image evidenceImage; // placeholders for now
     [SerializeField] private Sprite evidenceSprite;
     
     void Start()
@@ -41,7 +41,6 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     public void CloseEvidence()
     {
         
-        if (evidencePanel != null)
-            evidencePanel.SetActive(false);
+        evidencePanel?.SetActive(false); // week 3 - ternary operator
     }
 }
