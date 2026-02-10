@@ -13,7 +13,7 @@ public class HoverImageChanger : MonoBehaviour, IPointerEnterHandler, IPointerEx
     void Start()
     {
         imageComponent = GetComponent<Image>();
-        normalImage = imageComponent.sprite;
+        normalImage = imageComponent.sprite; 
     }
     
     public void OnPointerEnter(PointerEventData eventData)
