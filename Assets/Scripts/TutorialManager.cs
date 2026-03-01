@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] popUps; // instructions
     [SerializeField] GameObject textBubble;
     public int popUpIndex;
+    [SerializeField] GameObject modeIndicator;
     
     private bool cardClicked = false; 
 
@@ -37,7 +38,7 @@ public class TutorialManager : MonoBehaviour
                 break;
                 
             case 1: // instruction 1: click on bubble to proceed
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked) // if mouse is clicked on textBubble gameObject then go to next step
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
                     popUpIndex++;
@@ -46,8 +47,11 @@ public class TutorialManager : MonoBehaviour
                 break;
                 
             case 2: // instruction 2: tap for different modes    
-                // code
-                // popUpIndex++;
+                modeIndicator.SetActive(true);
+                if (Input.GetKeyDown (KeyCode.Tab)) 
+                {
+                    popUpIndex++; 
+                }
                 break;
             
             default:
