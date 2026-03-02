@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!modeIndicator.isThreadMode && selectedItems.Count > 0)
+        if (!modeIndicator.isThreadMode && (selectedItems.Count > 0 || connections.Count > 0))
         {
             ClearSelection();
         }

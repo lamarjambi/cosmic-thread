@@ -54,6 +54,9 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             
+            case 3: // instruction 3: timer!!!
+                break;
+
             default:
                 break;
         }
