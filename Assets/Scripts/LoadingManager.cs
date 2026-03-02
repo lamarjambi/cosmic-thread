@@ -37,7 +37,6 @@ public class LoadingManager : MonoBehaviour
     IEnumerator LoadSceneAsync()
     {
         float startTime = Time.time;
-        float fakeProgress = 0f;
         
         AsyncOperation operation = SceneManager.LoadSceneAsync(targetScene);
         operation.allowSceneActivation = false; 
