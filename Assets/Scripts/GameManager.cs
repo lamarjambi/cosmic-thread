@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public struct Connection
 {
+    // week 5 - struct
     public GameObject[] items;
 
     public Connection(List<GameObject> selectedItems)
