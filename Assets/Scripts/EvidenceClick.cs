@@ -8,6 +8,7 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject evidencePanel;
     [SerializeField] private Image evidenceImage; // placeholders for now
     [SerializeField] private Sprite evidenceSprite;
+    [SerializeField] ModeIndicator modeIndicator; 
     
     void Start()
     {
@@ -29,7 +30,8 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     
     private void ShowEvidence()
     {
-        if (evidencePanel != null)
+        // :func: show evidence only if we're in inspect mode
+        if ((evidencePanel != null) && (!modeIndicator.isThreadMode))
         {
             evidencePanel.SetActive(true);
             
@@ -40,7 +42,6 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
 
     public void CloseEvidence()
     {
-        
         evidencePanel?.SetActive(false); // week 3 - ternary operator
     }
 }

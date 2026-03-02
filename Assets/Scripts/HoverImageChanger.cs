@@ -9,7 +9,6 @@ public class HoverImageChanger : MonoBehaviour, IPointerEnterHandler, IPointerEx
     private Image imageComponent;
     private Sprite normalImage;
 
-    [SerializeField] ModeIndicator modeIndicator;
     
     void Start()
     {
@@ -19,15 +18,14 @@ public class HoverImageChanger : MonoBehaviour, IPointerEnterHandler, IPointerEx
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // only be able to hover/click when it's investigate mode
-        if ((hoverImage != null) && (!modeIndicator.isThreadMode))
+        if (hoverImage != null)
             imageComponent.sprite = hoverImage;
     }
     
     public void OnPointerExit(PointerEventData eventData)
     {
         // only be able to hover/click when it's investigate mode
-        if ((normalImage != null) && (!modeIndicator.isThreadMode))
+        if (normalImage != null)
             imageComponent.sprite = normalImage;
     }
 }
