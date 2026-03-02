@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject textBubble;
     public int popUpIndex;
     [SerializeField] GameObject modeIndicator;
+    [SerializeField] ModeIndicator modeInd;
     
     private bool cardClicked = false; 
 
@@ -54,7 +55,24 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             
-            case 3: // instruction 3: timer!!!
+            case 3: // instruction 3: shift + click!!!
+                // maybe find a way to make it shift and click
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    popUpIndex++;
+                }
+                break;
+
+                case 4: // instruction 4: escape 
+                if ((modeInd.isThreadMode) && (Input.GetKeyDown(KeyCode.Escape)))
+                {
+                    popUpIndex++;
+                }
+                break;
+
+                case 5: // instruction 5: timer!! 
+                // popUpIndex++
                 break;
 
             default:

@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     private List<Connection> connections = new List<Connection>();
     private List<GameObject> selectedItems = new List<GameObject>();
     [SerializeField] ModeIndicator modeIndicator;
+    public bool isEscape;
+    public bool isSelected = false;
 
     void Awake()
     {
