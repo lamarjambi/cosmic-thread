@@ -5,23 +5,34 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasRenderer))]
 public class UILineRenderer : MaskableGraphic
 {
-    public List<Vector2> points = new List<Vector2>();
+    private List<List<Vector2>> allConnections = new List<List<Vector2>>();
     public float lineWidth = 5f;
 
-    public void SetPoints(List<Vector2> newPoints)
+    public void AddConnection(List<Vector2> points)
     {
-        points = newPoints;
-        SetVerticesDirty(); 
+        if (points == null || points.Count < 2) return;
+        allConnections.Add(new List<Vector2>(points));
+        SetVerticesDirty();
+    }
+
+    public void ClearAll()
+    {
+        allConnections.Clear();
+        SetVerticesDirty();
     }
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
-        if (points == null || points.Count < 2) return;
+        int vertOffset = 0;
 
-        for (int i = 0; i < points.Count - 1; i++)
+        foreach (List<Vector2> points in allConnections)
         {
-            DrawSegment(vh, points[i], points[i + 1], i);
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                DrawSegment(vh, points[i], points[i + 1], vertOffset);
+                vertOffset++;
+            }
         }
     }
 
@@ -29,7 +40,6 @@ public class UILineRenderer : MaskableGraphic
     {
         Vector2 dir = (end - start).normalized;
         Vector2 perp = new Vector2(-dir.y, dir.x) * (lineWidth / 2f);
-
         int vertIndex = index * 4;
 
         vh.AddVert(start - perp, color, Vector2.zero);

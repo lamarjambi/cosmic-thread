@@ -8,7 +8,6 @@ public class HoverImageChanger : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [SerializeField] private Sprite hoverImage;
     private Image imageComponent;
     private Sprite normalImage;
-
     
     void Start()
     {
