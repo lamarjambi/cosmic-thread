@@ -24,7 +24,7 @@ public class LoadingManager : MonoBehaviour
         }
         else if (previousScene == "CasesScene" || previousScene == "CasesScene") 
         {
-            targetScene = "ZiggyScene";
+            targetScene = "TutorialScene";
         }
         else
         {

@@ -11,6 +11,7 @@ public class TutorialManager : MonoBehaviour
     public int popUpIndex;
     [SerializeField] GameObject modeIndicator;
     [SerializeField] ModeIndicator modeInd;
+    [SerializeField] GameObject newTimer;
     
     private bool cardClicked = false; 
 
@@ -72,7 +73,12 @@ public class TutorialManager : MonoBehaviour
                 break;
 
                 case 5: // instruction 5: timer!! 
-                // popUpIndex++
+                newTimer.SetActive(true);
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    popUpIndex++;
+                }
                 break;
 
             default:
