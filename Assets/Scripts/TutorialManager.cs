@@ -57,9 +57,9 @@ public class TutorialManager : MonoBehaviour
             
             case 3: // instruction 3: shift + click!!!
                 // maybe find a way to make it shift and click
-                if ((modeInd.isThreadMode) && (Input.GetKeyDown(KeyCode.LeftShift)))
+                if (modeInd.isThreadMode && GameManager.Instance.connectionMade)
                 {
-                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    GameManager.Instance.connectionMade = false; // reset
                     popUpIndex++;
                 }
                 break;

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ModeIndicator modeIndicator;
     public bool isEscape;
     public bool isSelected = false;
+    public bool connectionMade = false;
 
     void Awake()
     {
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && selectedItems.Count >= 2)
         {
             Connection connection = new Connection(selectedItems);
+            connectionMade = true;
             connections.Add(connection);
 
             List<Vector2> points = new List<Vector2>();
