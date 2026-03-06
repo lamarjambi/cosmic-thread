@@ -12,8 +12,11 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject modeIndicator;
     [SerializeField] ModeIndicator modeInd;
     [SerializeField] GameObject newTimer;
+    [SerializeField] GameObject gavel;
     
     private bool cardClicked = false; 
+    private bool gavelClicked = false;
+    
 
     void Awake()
     {
@@ -42,10 +45,9 @@ public class TutorialManager : MonoBehaviour
             case 1: // instruction 1: click on bubble to proceed
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
-                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false;
                     popUpIndex++;
                 }
-                
                 break;
                 
             case 2: // instruction 2: tap for different modes    
@@ -65,14 +67,14 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
 
-                case 4: // instruction 4: escape 
+            case 4: // instruction 4: escape 
                 if ((modeInd.isThreadMode) && (Input.GetKeyDown(KeyCode.Escape)))
                 {
                     popUpIndex++;
                 }
                 break;
 
-                case 5: // instruction 5: timer!! 
+            case 5: // instruction 5: timer!! 
                 newTimer.SetActive(true);
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
@@ -80,6 +82,31 @@ public class TutorialManager : MonoBehaviour
                     popUpIndex++;
                 }
                 break;
+
+            case 6: // instruction 6: connect correct one!! 
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    popUpIndex++;
+                }
+                break;
+
+            case 7: // instruction 7: you get gavel
+                gavel.SetActive(true);
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    popUpIndex++;
+                }
+                break;
+
+            case 8: // instruction 8: use gavel when you know who the culprit is
+                if (gavelClicked)
+                {
+                    gavelClicked = false; // reset
+                    popUpIndex++;
+                }
+                break;    
 
             default:
                 break;
@@ -89,5 +116,10 @@ public class TutorialManager : MonoBehaviour
     public void OnCardClicked()
     {
         cardClicked = true;
+    }
+
+    public void OnGavelClicked()
+    {
+        gavelClicked = true;
     }
 }
