@@ -15,13 +15,14 @@ public class GavelControl : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (TutorialManager.Instance != null && TutorialManager.Instance.popUpIndex != 8)
+            return;
+
         Debug.Log("clicked on " + gameObject.name);
         ShowCulprits();
 
         if (TutorialManager.Instance != null)
-        {
             TutorialManager.Instance.OnGavelClicked();
-        }
     }
     
     private void ShowCulprits()
