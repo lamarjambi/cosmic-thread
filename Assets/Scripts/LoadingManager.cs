@@ -18,13 +18,16 @@ public class LoadingManager : MonoBehaviour
     {
         string previousScene = PlayerPrefs.GetString("PreviousScene", "");
         
-        if (previousScene == "MainMenu" || previousScene == "MainMenu") 
+        if (previousScene == "MainMenu") 
         {
             targetScene = "BackstoryScene";
         }
-        else if (previousScene == "CasesScene" || previousScene == "CasesScene") 
+        else if (previousScene == "CasesScene") 
         {
             targetScene = "TutorialScene";
+        } else if (previousScene == "TutorialScene") 
+        {
+            targetScene = "ZiggyScene";
         }
         else
         {

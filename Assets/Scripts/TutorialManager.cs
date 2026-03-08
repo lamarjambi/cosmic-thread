@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -11,11 +12,20 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] GameObject textBubble;
     [SerializeField] GameObject resultTextBubble;
     public int popUpIndex;
+
+    [Header("Highlights")]
+    [SerializeField] GameObject highlight1;
+    [SerializeField] GameObject highlight2;
+    [SerializeField] GameObject highlight3;
+    [SerializeField] GameObject highlight4;
+    [SerializeField] GameObject highlight5;
+
     [SerializeField] GameObject modeIndicator;
     [SerializeField] ModeIndicator modeInd;
     [SerializeField] GameObject newTimer;
     [SerializeField] GameObject gavel;
 
+    [Header("Triggers")]
     private bool cardClicked = false; 
     private bool gavelClicked = false;
     private bool resultClicked = false;
@@ -42,7 +52,7 @@ public class TutorialManager : MonoBehaviour
         switch (popUpIndex)
         {
             case 0: // instruction 0: intro
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 0) 
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
                     AdvancePopUp();
@@ -50,9 +60,11 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 1: // instruction 1: intro
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 1)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    highlight1.SetActive(false);
+                    highlight2.SetActive(true);
                     AdvancePopUp();
                 }
                 break;
@@ -66,7 +78,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 3: // instruction 3: click on bubble to proceed
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 3)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false;
                     AdvancePopUp();
@@ -82,7 +94,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 5: // instruction 5: shift + click!!!
-                // maybe find a way to make it shift and click
+                highlight2.SetActive(false);
                 if (modeInd.isThreadMode && GameManager.Instance.connectionMade)
                 {
                     GameManager.Instance.connectionMade = false; // reset
@@ -93,13 +105,14 @@ public class TutorialManager : MonoBehaviour
             case 6: // instruction 6: escape 
                 if ((modeInd.isThreadMode) && (Input.GetKeyDown(KeyCode.Escape)))
                 {
+                    highlight3.SetActive(true);
                     AdvancePopUp();
                 }
                 break;
 
             case 7: // instruction 7: timer!! 
                 newTimer.SetActive(true);
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 7)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
                     AdvancePopUp();
@@ -107,8 +120,10 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 8: // instruction 8: connect correct one!! 
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                highlight3.SetActive(false);
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 8)
                 {
+                    highlight4.SetActive(true);
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
                     AdvancePopUp();
                 }
@@ -116,8 +131,9 @@ public class TutorialManager : MonoBehaviour
 
             case 9: // instruction 9: you get gavel
                 gavel.SetActive(true);
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 9)
                 {
+                    highlight4.SetActive(false);
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
                     AdvancePopUp();
                 }
@@ -132,7 +148,7 @@ public class TutorialManager : MonoBehaviour
                 break;  
 
             case 11: // instruction 11: WHO DONE IT?
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 11)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
                     AdvancePopUp();
@@ -149,12 +165,20 @@ public class TutorialManager : MonoBehaviour
 
             case 13: // instruction 13: OUTRO
                 textBubble = resultTextBubble;
-                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 13)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
                     AdvancePopUp();
                 }
-                break;                    
+                break;
+
+            case 14: // instruction 14: OUTRO + loading to ziggycase
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 14)
+                {
+                    PlayerPrefs.SetString("PreviousScene", "TutorialScene");
+                    SceneManager.LoadScene("LoadingScene");
+                }
+                break;                        
 
             default:
                 break;
