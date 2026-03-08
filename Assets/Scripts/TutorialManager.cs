@@ -34,7 +34,23 @@ public class TutorialManager : MonoBehaviour
         // week 3 - switch system
         switch (popUpIndex)
         {
-            case 0: // instruction 0: click any of the cards to investigate
+            case 0: // instruction 0: intro
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    popUpIndex++;
+                }
+                break;
+
+            case 1: // instruction 1: intro
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    popUpIndex++;
+                }
+                break;    
+
+            case 2: // instruction 2: click any of the cards to investigate
                 if (cardClicked)
                 {
                     popUpIndex++;
@@ -42,7 +58,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
                 
-            case 1: // instruction 1: click on bubble to proceed
+            case 3: // instruction 3: click on bubble to proceed
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false;
@@ -50,7 +66,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
                 
-            case 2: // instruction 2: tap for different modes    
+            case 4: // instruction 4: tap for different modes    
                 modeIndicator.SetActive(true);
                 if (Input.GetKeyDown (KeyCode.Tab)) 
                 {
@@ -58,7 +74,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             
-            case 3: // instruction 3: shift + click!!!
+            case 5: // instruction 5: shift + click!!!
                 // maybe find a way to make it shift and click
                 if (modeInd.isThreadMode && GameManager.Instance.connectionMade)
                 {
@@ -67,14 +83,14 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
 
-            case 4: // instruction 4: escape 
+            case 6: // instruction 6: escape 
                 if ((modeInd.isThreadMode) && (Input.GetKeyDown(KeyCode.Escape)))
                 {
                     popUpIndex++;
                 }
                 break;
 
-            case 5: // instruction 5: timer!! 
+            case 7: // instruction 7: timer!! 
                 newTimer.SetActive(true);
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
@@ -83,7 +99,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
 
-            case 6: // instruction 6: connect correct one!! 
+            case 8: // instruction 8: connect correct one!! 
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
@@ -91,7 +107,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
 
-            case 7: // instruction 7: you get gavel
+            case 9: // instruction 9: you get gavel
                 gavel.SetActive(true);
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
@@ -100,7 +116,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
 
-            case 8: // instruction 8: use gavel when you know who the culprit is
+            case 10: // instruction 10: use gavel when you know who the culprit is
                 if (gavelClicked)
                 {
                     gavelClicked = false; // reset

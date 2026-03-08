@@ -32,26 +32,18 @@ public class TextAnim : MonoBehaviour
             }
         }
         
-        // Configure AudioSource for optimal typewriter sound playback
         _audioSource.playOnAwake = false;
         _audioSource.loop = false;
         
-        // Set up the full text from the TextMeshPro component
         if (_textMeshPro != null)
         {
             _fullText = _textMeshPro.text;
-            // Start with text completely hidden
             _textMeshPro.maxVisibleCharacters = 0;
             
-            // Start the typewriter effect automatically if enabled
             if (_startAutomatically)
             {
                 StartTypewriter();
             }
-        }
-        else
-        {
-            Debug.LogError("TextAnim: TextMeshProUGUI component not found! Make sure the script is on the same GameObject as the Text (TMP) component.");
         }
     }
 
@@ -62,20 +54,16 @@ public class TextAnim : MonoBehaviour
     {
         if (_textMeshPro == null)
         {
-            Debug.LogError("TextAnim: TextMeshProUGUI component is null!");
             return;
         }
         
         if (_isTyping)
         {
-            Debug.Log("TextAnim: Already typing, skipping start request.");
             return;
         }
         
         _fullText = _textMeshPro.text;
         _textMeshPro.maxVisibleCharacters = 0;
-        
-        Debug.Log($"TextAnim: Starting typewriter effect with text: '{_fullText}' (Length: {_fullText.Length})");
         
         if (_currentTypewriterCoroutine != null)
         {
@@ -85,10 +73,6 @@ public class TextAnim : MonoBehaviour
         _currentTypewriterCoroutine = StartCoroutine(TextVisible());
     }
     
-    /// <summary>
-    /// Start the typewriter effect with custom text
-    /// </summary>
-    /// <param name="textToType">The text to display with typewriter effect</param>
     public void StartTypewriter(string textToType)
     {
         if (_textMeshPro == null || _isTyping) return;
@@ -105,9 +89,6 @@ public class TextAnim : MonoBehaviour
         _currentTypewriterCoroutine = StartCoroutine(TextVisible());
     }
     
-    /// <summary>
-    /// Stop the current typewriter effect and show all text immediately
-    /// </summary>
     public void SkipTypewriter()
     {
         if (_currentTypewriterCoroutine != null)
@@ -124,9 +105,6 @@ public class TextAnim : MonoBehaviour
         _isTyping = false;
     }
     
-    /// <summary>
-    /// Check if the typewriter effect is currently running
-    /// </summary>
     public bool IsTyping => _isTyping;
 
     private IEnumerator TextVisible() 
@@ -139,19 +117,16 @@ public class TextAnim : MonoBehaviour
         {
             _textMeshPro.maxVisibleCharacters = i;
             
-            // Play typing sound for each character (except spaces and at the start)
             if (i > 0 && i <= totalVisibleCharacters && _playSoundOnEachCharacter && _audioSource != null && _typingSound != null)
             {
                 char currentChar = _fullText[i - 1];
                 
-                // Only play sound for visible characters (not spaces, newlines, tabs)
                 if (!char.IsWhiteSpace(currentChar))
                 {
                     PlayTypingSound();
                 }
             }
             
-            // Wait before showing the next character
             yield return new WaitForSeconds(_typingSpeed);
         }
         
@@ -159,31 +134,19 @@ public class TextAnim : MonoBehaviour
         _currentTypewriterCoroutine = null;
     }
     
-    /// <summary>
-    /// Play the typing sound effect
-    /// </summary>
     private void PlayTypingSound()
     {
         if (_audioSource != null && _typingSound != null)
         {
-            // Use PlayOneShot to allow multiple sounds to overlap if needed
             _audioSource.PlayOneShot(_typingSound, _soundVolume);
         }
     }
     
-    /// <summary>
-    /// Set the typing speed (delay between characters)
-    /// </summary>
-    /// <param name="speed">Delay in seconds between each character</param>
     public void SetTypingSpeed(float speed)
     {
         _typingSpeed = speed;
     }
     
-    /// <summary>
-    /// Set the volume of the typing sound
-    /// </summary>
-    /// <param name="volume">Volume between 0 and 1</param>
     public void SetSoundVolume(float volume)
     {
         _soundVolume = Mathf.Clamp01(volume);

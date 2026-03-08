@@ -3547,7 +3547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeIndicator: {fileID: 654294774}
   countdownTimer: {fileID: 1254330111}
-  gavel: {fileID: 0}
+  gavel: {fileID: 516194928}
 --- !u!1 &1412530176
 GameObject:
   m_ObjectHideFlags: 0
