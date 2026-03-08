@@ -80,21 +80,24 @@ public class TutorialManager : MonoBehaviour
             case 3: // instruction 3: click on bubble to proceed
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked && Instance.popUpIndex == 3)
                 {
+                    highlight2.SetActive(false);
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false;
                     AdvancePopUp();
                 }
                 break;
 
-            case 4: // instruction 4: tap for different modes    
+            case 4: // instruction 4: tap for different modes  
+                highlight5.SetActive(true);  
                 modeIndicator.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.Tab))
                 {
+                    highlight5.SetActive(false);
                     AdvancePopUp();
                 }
                 break;
 
             case 5: // instruction 5: shift + click!!!
-                highlight2.SetActive(false);
+                
                 if (modeInd.isThreadMode && GameManager.Instance.connectionMade)
                 {
                     GameManager.Instance.connectionMade = false; // reset
