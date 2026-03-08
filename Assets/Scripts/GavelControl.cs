@@ -15,7 +15,7 @@ public class GavelControl : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (TutorialManager.Instance != null && TutorialManager.Instance.popUpIndex != 8)
+        if (TutorialManager.Instance != null && TutorialManager.Instance.popUpIndex != 10)
             return;
 
         Debug.Log("clicked on " + gameObject.name);

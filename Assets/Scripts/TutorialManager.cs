@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -13,19 +14,23 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] ModeIndicator modeInd;
     [SerializeField] GameObject newTimer;
     [SerializeField] GameObject gavel;
-    
+
     private bool cardClicked = false; 
     private bool gavelClicked = false;
-    
+
 
     void Awake()
     {
         Instance = this; // singleton initiation
     }
 
+    void Start()
+    {
+        TriggerTypewriter();
+    }
+
     void Update()
     {
-        
         for (int i = 0; i < popUps.Length; i++)
         {
             popUps[i].SetActive(i == popUpIndex);
@@ -38,7 +43,7 @@ public class TutorialManager : MonoBehaviour
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
                 break;
 
@@ -46,47 +51,47 @@ public class TutorialManager : MonoBehaviour
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
-                break;    
+                break;
 
             case 2: // instruction 2: click any of the cards to investigate
                 if (cardClicked)
                 {
-                    popUpIndex++;
                     cardClicked = false; // to reset
+                    AdvancePopUp();
                 }
                 break;
-                
+
             case 3: // instruction 3: click on bubble to proceed
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false;
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
                 break;
-                
+
             case 4: // instruction 4: tap for different modes    
                 modeIndicator.SetActive(true);
-                if (Input.GetKeyDown (KeyCode.Tab)) 
+                if (Input.GetKeyDown(KeyCode.Tab))
                 {
-                    popUpIndex++; 
+                    AdvancePopUp();
                 }
                 break;
-            
+
             case 5: // instruction 5: shift + click!!!
                 // maybe find a way to make it shift and click
                 if (modeInd.isThreadMode && GameManager.Instance.connectionMade)
                 {
                     GameManager.Instance.connectionMade = false; // reset
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
                 break;
 
             case 6: // instruction 6: escape 
                 if ((modeInd.isThreadMode) && (Input.GetKeyDown(KeyCode.Escape)))
                 {
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
                 break;
 
@@ -95,7 +100,7 @@ public class TutorialManager : MonoBehaviour
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
                 break;
 
@@ -103,7 +108,7 @@ public class TutorialManager : MonoBehaviour
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
                 break;
 
@@ -112,7 +117,7 @@ public class TutorialManager : MonoBehaviour
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
                 break;
 
@@ -120,15 +125,39 @@ public class TutorialManager : MonoBehaviour
                 if (gavelClicked)
                 {
                     gavelClicked = false; // reset
-                    popUpIndex++;
+                    AdvancePopUp();
                 }
-                break;    
+                break;
 
             default:
                 break;
         }
     }
-    
+
+    private void AdvancePopUp()
+    {
+        TextAnim anim = popUps[popUpIndex].GetComponent<TextAnim>();
+        if (anim != null && anim.IsTyping)
+        {
+            anim.SkipTypewriter(); // first click skips
+            return;
+        }
+
+        popUpIndex++;
+        TriggerTypewriter();
+    }
+
+    private void TriggerTypewriter()
+    {
+        if (popUpIndex >= popUps.Length) return;
+
+        TextAnim anim = popUps[popUpIndex].GetComponent<TextAnim>();
+        if (anim != null)
+        {
+            anim.StartTypewriter();
+        }
+    }
+
     public void OnCardClicked()
     {
         cardClicked = true;
