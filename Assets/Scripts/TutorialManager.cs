@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager Instance; // week 5 - singleton 
     public GameObject[] popUps; // instructions
     [SerializeField] GameObject textBubble;
+    [SerializeField] GameObject resultTextBubble;
     public int popUpIndex;
     [SerializeField] GameObject modeIndicator;
     [SerializeField] ModeIndicator modeInd;
@@ -147,6 +148,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 13: // instruction 13: OUTRO
+                textBubble = resultTextBubble;
                 if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
                 {
                     textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset

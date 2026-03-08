@@ -24,7 +24,7 @@ public class CulpritClick : MonoBehaviour, IPointerClickHandler
         ShowResult();
 
         if (TutorialManager.Instance != null)
-            TutorialManager.Instance.OnGavelClicked();
+            TutorialManager.Instance.OnResultClicked();
     }
     
     private void ShowResult()
