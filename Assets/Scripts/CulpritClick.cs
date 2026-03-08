@@ -1,18 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class CulpritClick : MonoBehaviour
+public class CulpritClick : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called before the first frame update
+    [SerializeField] private GameObject resultScreen;
+    [SerializeField] private GameObject culpritPanel;
+    
     void Start()
     {
-        
+        if (resultScreen != null)
+            resultScreen.SetActive(false);  
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
+        if (TutorialManager.Instance != null && TutorialManager.Instance.popUpIndex != 12)
+            return;
+
+        Debug.Log("clicked on " + gameObject.name);
+        ShowResult();
+
+        if (TutorialManager.Instance != null)
+            TutorialManager.Instance.OnGavelClicked();
+    }
+    
+    private void ShowResult()
+    {
+        // :func: show evidence only if we're in inspect mode
+        if ((resultScreen != null))
+        {
+            resultScreen.SetActive(true);
+        }
     }
 }

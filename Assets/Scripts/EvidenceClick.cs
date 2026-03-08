@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 public class EvidenceClick : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Evidence Display")]
     [SerializeField] private GameObject evidencePanel;
     [SerializeField] private Image evidenceImage; // placeholders for now
     [SerializeField] private Sprite evidenceSprite;

@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
 
     private bool cardClicked = false; 
     private bool gavelClicked = false;
+    private bool resultClicked = false;
 
 
     void Awake()
@@ -127,7 +128,31 @@ public class TutorialManager : MonoBehaviour
                     gavelClicked = false; // reset
                     AdvancePopUp();
                 }
+                break;  
+
+            case 11: // instruction 11: WHO DONE IT?
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    AdvancePopUp();
+                }
+                break; 
+
+            case 12: // instruction 12: WHO DONE IT?
+                if (resultClicked)
+                {
+                    resultClicked = false; // to reset
+                    AdvancePopUp();
+                }
                 break;
+
+            case 13: // instruction 13: OUTRO
+                if (textBubble.GetComponent<TextBubbleClick>().wasClicked)
+                {
+                    textBubble.GetComponent<TextBubbleClick>().wasClicked = false; // reset
+                    AdvancePopUp();
+                }
+                break;                    
 
             default:
                 break;
@@ -166,5 +191,10 @@ public class TutorialManager : MonoBehaviour
     public void OnGavelClicked()
     {
         gavelClicked = true;
+    }
+
+    public void OnResultClicked()
+    {
+        resultClicked = true;
     }
 }
