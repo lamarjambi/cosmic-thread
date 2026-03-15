@@ -1,0 +1,25 @@
+*
+
+!*/
+
+!*.cs
+!*.md
+!*.unity
+!*.prefab
+!*.asset
+!*.meta   # important — Unity needs these for GUIDs
+!*.anim
+!*.controller
+!*.mat
+!*.png
+!*.jpg
+!*.wav
+!*.mp3
+
+Temp/
+Library/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
