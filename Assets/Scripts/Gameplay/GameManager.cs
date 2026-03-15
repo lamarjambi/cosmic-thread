@@ -26,9 +26,8 @@ public class GameManager : MonoBehaviour
     public Canvas canvas;
 
     [SerializeField] private ModeIndicator modeIndicator;
-    [SerializeField] private GameObject gavelObject; // assign in Inspector
-
-    // Define correct pairs here in the Inspector
+    [SerializeField] private GameObject gavelObject; 
+    
     [SerializeField] private List<CorrectConnection> correctConnections = new List<CorrectConnection>();
 
     private List<Connection> connections = new List<Connection>();
@@ -98,7 +97,6 @@ public class GameManager : MonoBehaviour
                 return; // at least one correct pair is missing
         }
 
-        // All correct connections are present — show the gavel
         if (gavelObject != null)
             gavelObject.SetActive(true);
 
@@ -128,7 +126,7 @@ public class GameManager : MonoBehaviour
         uiLineRenderer.ClearAll();
 
         if (gavelObject != null)
-            gavelObject.SetActive(false); // hide gavel if player clears
+            gavelObject.SetActive(false); 
     }
 
     Vector2 GetCanvasPosition(RectTransform itemRect)

@@ -111,7 +111,7 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     {
         if (_zoomCoroutine != null) StopCoroutine(_zoomCoroutine);
         if (evidenceImage != null)
-            evidenceImage.rectTransform.localScale = Vector3.one; // reset for next open
+            evidenceImage.rectTransform.localScale = Vector3.one; 
         evidencePanel?.SetActive(false);
     }
 }

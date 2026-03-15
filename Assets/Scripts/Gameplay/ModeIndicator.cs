@@ -20,7 +20,7 @@ public class ModeIndicator : MonoBehaviour
         {
             isThreadMode = !isThreadMode;
             UpdateModeText();
-            StopCoroutine(nameof(FlashText)); // prevent overlap if spammed
+            StopCoroutine(nameof(FlashText)); 
             StartCoroutine(nameof(FlashText));
         }
     }
@@ -36,13 +36,13 @@ public class ModeIndicator : MonoBehaviour
 
         for (int i = 0; i < flashCount; i++)
         {
-            // Fade out
+            
             yield return LerpAlpha(original.a, 0f, flashDuration / 2);
-            // Fade in
+            
             yield return LerpAlpha(0f, original.a, flashDuration / 2);
         }
 
-        modeText.color = original; // ensure we end clean
+        modeText.color = original; 
     }
 
     private IEnumerator LerpAlpha(float from, float to, float duration)
