@@ -223,6 +223,14 @@ MonoBehaviour:
   uiLineRenderer: {fileID: 1567765807}
   canvas: {fileID: 146705390}
   modeIndicator: {fileID: 888837025}
+  gavelObject: {fileID: 1896332248}
+  correctConnections:
+  - itemA: {fileID: 113695461}
+    itemB: {fileID: 373615451}
+  - itemA: {fileID: 1272998472}
+    itemB: {fileID: 1017922489}
+  - itemA: {fileID: 78543959}
+    itemB: {fileID: 721674297}
   isEscape: 0
   isSelected: 0
   connectionMade: 0
@@ -815,12 +823,13 @@ RectTransform:
   - {fileID: 257601723}
   - {fileID: 448324370}
   - {fileID: 17127920}
-  - {fileID: 1681595255}
   - {fileID: 1178572960}
   - {fileID: 777946208}
   - {fileID: 888837024}
   - {fileID: 1896332249}
   - {fileID: 58128866}
+  - {fileID: 689002131}
+  - {fileID: 1681595255}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1413,6 +1422,95 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &689002130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689002131}
+  - component: {fileID: 689002134}
+  - component: {fileID: 689002133}
+  - component: {fileID: 689002132}
+  m_Layer: 5
+  m_Name: ResultPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &689002131
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689002130}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 146705391}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &689002132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689002130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc111394b770b4344ae3326e315d58d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  culpritPanel: {fileID: 58128865}
+--- !u!114 &689002133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689002130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0043b368a37a4bd408dd2ce0961d2dd7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &689002134
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689002130}
+  m_CullTransparentMesh: 1
 --- !u!1 &721674297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,7 +2842,7 @@ GameObject:
   - component: {fileID: 1537724912}
   - component: {fileID: 1537724911}
   m_Layer: 5
-  m_Name: DummyMugshot2
+  m_Name: MooksaiMugshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2782,7 +2880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultScreen: {fileID: 0}
-  culpritPanel: {fileID: 0}
+  culpritPanel: {fileID: 1681595254}
 --- !u!114 &1537724912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2795,7 +2893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da41ee6eab58f3746918151927b25dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImage: {fileID: 21300000, guid: 106ed3341b93bba4982d98891a587c95, type: 3}
+  hoverImage: {fileID: 21300000, guid: d22216e40f8089d42847fcc97e57bf04, type: 3}
 --- !u!114 &1537724913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2816,7 +2914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5d2016fe0dacc1448a4b25b8e9c2a56e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb4ed9e5addeb6c468a6fc3317d40129, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2914,7 +3012,7 @@ GameObject:
   - component: {fileID: 1640349601}
   - component: {fileID: 1640349600}
   m_Layer: 5
-  m_Name: DummyMugshot
+  m_Name: UterraMugshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2952,7 +3050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultScreen: {fileID: 0}
-  culpritPanel: {fileID: 0}
+  culpritPanel: {fileID: 1681595254}
 --- !u!114 &1640349601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2965,7 +3063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da41ee6eab58f3746918151927b25dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImage: {fileID: 21300000, guid: 5e4178dd08638de4ab02752718d56a02, type: 3}
+  hoverImage: {fileID: 21300000, guid: 399b17817d0a1ec489d8bc907fad256e, type: 3}
 --- !u!114 &1640349602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2986,7 +3084,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f3a27bc5500b97f48a17d644665254cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: db400554f814d504780b69436537e814, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3018,7 +3116,7 @@ GameObject:
   - component: {fileID: 1674764931}
   - component: {fileID: 1674764930}
   m_Layer: 5
-  m_Name: DummyMugshot3
+  m_Name: XerlaMugshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3056,7 +3154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultScreen: {fileID: 0}
-  culpritPanel: {fileID: 0}
+  culpritPanel: {fileID: 1681595254}
 --- !u!114 &1674764931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3069,7 +3167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da41ee6eab58f3746918151927b25dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImage: {fileID: 21300000, guid: 6a009db9f74aeb64eba933ebe3900c2e, type: 3}
+  hoverImage: {fileID: 21300000, guid: 96135c86a9a39df42a20ebba01afbc15, type: 3}
 --- !u!114 &1674764932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3090,7 +3188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8e0fa15aa2c49544b80c630b35aafb80, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6a7484edea6f28489fb9c1fb2b919e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

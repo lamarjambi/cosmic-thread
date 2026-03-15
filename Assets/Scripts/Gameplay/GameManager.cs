@@ -2,9 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct CorrectConnection
+{
+    public GameObject itemA;
+    public GameObject itemB;
+}
+
 public struct Connection
 {
-    // week 5 - struct
     public GameObject[] items;
 
     public Connection(List<GameObject> selectedItems)
@@ -19,9 +25,15 @@ public class GameManager : MonoBehaviour
     public UILineRenderer uiLineRenderer;
     public Canvas canvas;
 
+    [SerializeField] private ModeIndicator modeIndicator;
+    [SerializeField] private GameObject gavelObject; // assign in Inspector
+
+    // Define correct pairs here in the Inspector
+    [SerializeField] private List<CorrectConnection> correctConnections = new List<CorrectConnection>();
+
     private List<Connection> connections = new List<Connection>();
     private List<GameObject> selectedItems = new List<GameObject>();
-    [SerializeField] ModeIndicator modeIndicator;
+
     public bool isEscape;
     public bool isSelected = false;
     public bool connectionMade = false;
@@ -31,17 +43,19 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    void Start()
+    {
+        if (gavelObject != null)
+            gavelObject.SetActive(false);
+    }
+
     void Update()
     {
         if (!modeIndicator.isThreadMode && (selectedItems.Count > 0 || connections.Count > 0))
-        {
             ClearSelection();
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape) && modeIndicator.isThreadMode)
-        {
             ClearSelection();
-        }
     }
 
     public void OnItemClicked(GameObject item)
@@ -69,8 +83,37 @@ public class GameManager : MonoBehaviour
                 Image img = obj.GetComponent<Image>();
                 if (img != null) img.color = Color.white;
             }
+
             selectedItems.Clear();
+
+            CheckAllConnectionsCorrect();
         }
+    }
+
+    private void CheckAllConnectionsCorrect()
+    {
+        foreach (CorrectConnection correct in correctConnections)
+        {
+            if (!IsConnectionMade(correct.itemA, correct.itemB))
+                return; // at least one correct pair is missing
+        }
+
+        // All correct connections are present — show the gavel
+        if (gavelObject != null)
+            gavelObject.SetActive(true);
+
+        Debug.Log("All correct connections made! Gavel revealed.");
+    }
+
+    private bool IsConnectionMade(GameObject a, GameObject b)
+    {
+        foreach (Connection conn in connections)
+        {
+            bool hasA = System.Array.Exists(conn.items, item => item == a);
+            bool hasB = System.Array.Exists(conn.items, item => item == b);
+            if (hasA && hasB) return true;
+        }
+        return false;
     }
 
     void ClearSelection()
@@ -83,19 +126,20 @@ public class GameManager : MonoBehaviour
         selectedItems.Clear();
         connections.Clear();
         uiLineRenderer.ClearAll();
+
+        if (gavelObject != null)
+            gavelObject.SetActive(false); // hide gavel if player clears
     }
 
     Vector2 GetCanvasPosition(RectTransform itemRect)
     {
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, itemRect.position);
-
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             uiLineRenderer.GetComponent<RectTransform>(),
             screenPoint,
             null,
             out Vector2 localPoint
         );
-
         return localPoint;
     }
 }
