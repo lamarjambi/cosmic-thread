@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         if (gavelObject != null)
             gavelObject.SetActive(true);
 
-        Debug.Log("All correct connections made! Gavel revealed.");
+        Debug.Log("correct connections");
     }
 
     private bool IsConnectionMade(GameObject a, GameObject b)
