@@ -793,6 +793,8 @@ MonoBehaviour:
   hoverScale: 1.08
   hoverAngle: 7
   animationSpeed: 0.1
+  isLocked: 1
+  lockedColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   targetScene: JamxScene
   description: 'Case 02: Something something'
   buttonSound: {fileID: 0}
@@ -1117,6 +1119,8 @@ MonoBehaviour:
   hoverScale: 1.08
   hoverAngle: 7
   animationSpeed: 0.1
+  isLocked: 1
+  lockedColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   targetScene: LoomScene
   description: 'Case 03: Something something'
   buttonSound: {fileID: 0}
@@ -1395,6 +1399,8 @@ MonoBehaviour:
   hoverScale: 1.08
   hoverAngle: 7
   animationSpeed: 0.1
+  isLocked: 0
+  lockedColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
   targetScene: LoadingScene
   description: 'Case 01: Xaltra''s biggest popstar is MISSING'
   buttonSound: {fileID: 0}
