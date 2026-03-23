@@ -1269,8 +1269,8 @@ GameObject:
   - component: {fileID: 1823311505}
   - component: {fileID: 1823311507}
   - component: {fileID: 1823311506}
-  - component: {fileID: 1823311509}
   - component: {fileID: 1823311508}
+  - component: {fileID: 1823311509}
   m_Layer: 5
   m_Name: ziggyCaseImg
   m_TagString: Untagged
@@ -1396,7 +1396,7 @@ MonoBehaviour:
   hoverAngle: 7
   animationSpeed: 0.1
   targetScene: LoadingScene
-  description: 'Case 01: Xaltar''s mega popstar, Ziggy, goes missing!'
+  description: 'Case 01: Xaltra''s biggest popstar is MISSING'
   buttonSound: {fileID: 0}
   descriptionPanel: {fileID: 1034467411}
   descriptionText: {fileID: 511754072}

@@ -27,7 +27,6 @@ public class LoomCase : HoverableCase, IPointerClickHandler
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
             
-        // Setup description UI
         if (descriptionText != null)
             descriptionText.text = description;
             
@@ -43,10 +42,8 @@ public class LoomCase : HoverableCase, IPointerClickHandler
         {
             RectTransform rectTransform = descriptionPanel.GetComponent<RectTransform>();
             
-            // Set fixed width
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, descriptionWidth);
             
-            // Set position
             rectTransform.anchoredPosition = descriptionPosition;
             
             descriptionPanel.SetActive(true);

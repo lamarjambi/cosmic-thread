@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class CulpritClick : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private GameObject resultScreen;
-    [SerializeField] private GameObject culpritPanel;
+    [SerializeField] private CulpritPanel culpritPanel;
     
     void Start()
     {
@@ -21,7 +21,7 @@ public class CulpritClick : MonoBehaviour, IPointerClickHandler
             return;
 
         Debug.Log("clicked on " + gameObject.name);
-        ShowResult();
+        culpritPanel.OnCulpritSelected(gameObject);
 
         if (TutorialManager.Instance != null)
             TutorialManager.Instance.OnResultClicked();
