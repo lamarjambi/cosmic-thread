@@ -15,7 +15,7 @@ public class HoverableCase : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     protected float targetAngle;
 
     [Header("Lock Settings")]
-    public bool isLocked = false;
+    [HideInInspector] public bool isLocked = true;
     public Color lockedColor = new Color(0.4f, 0.4f, 0.4f, 1f);
     protected SpriteRenderer spriteRenderer;
     

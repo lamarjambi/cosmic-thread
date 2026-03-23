@@ -26,6 +26,7 @@ public class LoomCase : HoverableCase, IPointerClickHandler
         base.Start();
 
         isLocked = PlayerPrefs.GetInt("ZiggyCaseCompleted", 0) == 0;
+        Debug.Log($"[LoomCase] ZiggyCaseCompleted={PlayerPrefs.GetInt("ZiggyCaseCompleted", 0)}, isLocked={isLocked}");
 
         caseImage = GetComponent<Image>();
 
@@ -38,23 +39,20 @@ public class LoomCase : HoverableCase, IPointerClickHandler
         if (descriptionPanel != null)
             descriptionPanel.SetActive(false);
 
-        if (isLocked && caseImage != null)
-            caseImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+        if (caseImage != null)
+            caseImage.color = isLocked ? new Color(0.4f, 0.4f, 0.4f, 1f) : Color.white;
     }
     
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        if (isLocked) return; // block hover
+        if (isLocked) return;
         base.OnPointerEnter(eventData);
         
         if (descriptionPanel != null)
         {
             RectTransform rectTransform = descriptionPanel.GetComponent<RectTransform>();
-            
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, descriptionWidth);
-            
             rectTransform.anchoredPosition = descriptionPosition;
-            
             descriptionPanel.SetActive(true);
         }
     }
@@ -75,7 +73,6 @@ public class LoomCase : HoverableCase, IPointerClickHandler
         {
             if (buttonSound != null && audioSource != null)
                 audioSource.PlayOneShot(buttonSound);
-                
             SceneManager.LoadScene(targetScene);
         }
     }

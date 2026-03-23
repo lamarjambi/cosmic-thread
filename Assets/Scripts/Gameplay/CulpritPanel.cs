@@ -48,9 +48,9 @@ public class CulpritPanel : MonoBehaviour
 
         if (correct)
         {
-            // Mark Ziggy case as completed (only Ziggy is the tutorial gate)
             PlayerPrefs.SetInt("ZiggyCaseCompleted", 1);
             PlayerPrefs.Save();
+            Debug.Log("ZiggyCaseCompleted set to: " + PlayerPrefs.GetInt("ZiggyCaseCompleted"));
         }
 
         yield return new WaitForSeconds(3f);

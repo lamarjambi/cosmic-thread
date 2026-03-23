@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.DeleteKey("ZiggyCaseCompleted");
         audioSource.Play();
     }
 
