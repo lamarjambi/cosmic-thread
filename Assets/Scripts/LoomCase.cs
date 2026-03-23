@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LoomCase : HoverableCase, IPointerClickHandler
 {
@@ -12,6 +13,7 @@ public class LoomCase : HoverableCase, IPointerClickHandler
     [Header("UI Elements")]
     public GameObject descriptionPanel;
     public TMPro.TextMeshProUGUI descriptionText;
+    private Image caseImage;
     
     [Header("Description Positioning")]
     public float descriptionWidth = 400f;
@@ -22,20 +24,27 @@ public class LoomCase : HoverableCase, IPointerClickHandler
     protected override void Start()
     {
         base.Start();
-        
+
+        isLocked = PlayerPrefs.GetInt("ZiggyCaseCompleted", 0) == 0;
+
+        caseImage = GetComponent<Image>();
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
-            
+
         if (descriptionText != null)
             descriptionText.text = description;
-            
         if (descriptionPanel != null)
             descriptionPanel.SetActive(false);
+
+        if (isLocked && caseImage != null)
+            caseImage.color = new Color(0.4f, 0.4f, 0.4f, 1f);
     }
     
     public override void OnPointerEnter(PointerEventData eventData)
     {
+        if (isLocked) return; // block hover
         base.OnPointerEnter(eventData);
         
         if (descriptionPanel != null)
@@ -52,6 +61,7 @@ public class LoomCase : HoverableCase, IPointerClickHandler
     
     public override void OnPointerExit(PointerEventData eventData)
     {
+        if (isLocked) return;
         base.OnPointerExit(eventData);
         
         if (descriptionPanel != null)
@@ -60,6 +70,7 @@ public class LoomCase : HoverableCase, IPointerClickHandler
     
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        if (isLocked) return;
         if (hovered && eventData.button == PointerEventData.InputButton.Left)
         {
             if (buttonSound != null && audioSource != null)

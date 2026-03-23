@@ -46,8 +46,14 @@ public class CulpritPanel : MonoBehaviour
         jailImage.SetActive(correct);
         bloodImage.SetActive(!correct);
 
-        yield return new WaitForSeconds(3f);
+        if (correct)
+        {
+            // Mark Ziggy case as completed (only Ziggy is the tutorial gate)
+            PlayerPrefs.SetInt("ZiggyCaseCompleted", 1);
+            PlayerPrefs.Save();
+        }
 
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("CasesScene");
     }
 }

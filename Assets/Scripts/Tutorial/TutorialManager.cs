@@ -39,6 +39,8 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         TriggerTypewriter();
+
+        gavel.SetActive(false);
     }
 
     void Update()
@@ -97,7 +99,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 5: // instruction 5: shift + click!!!
-                
+                gavel.SetActive(false);
                 if (modeInd.isThreadMode && GameManager.Instance.connectionMade)
                 {
                     GameManager.Instance.connectionMade = false; // reset
@@ -106,6 +108,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 6: // instruction 6: escape 
+                gavel.SetActive(false);
                 if ((modeInd.isThreadMode) && (Input.GetKeyDown(KeyCode.Escape)))
                 {
                     highlight3.SetActive(true);

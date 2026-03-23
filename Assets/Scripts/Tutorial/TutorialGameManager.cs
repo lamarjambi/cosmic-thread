@@ -2,37 +2,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct CorrectConnection
+public struct TutorialConnection
 {
-    public GameObject itemA;
-    public GameObject itemB;
-}
-
-public struct Connection
-{
+    // week 5 - struct
     public GameObject[] items;
 
-    public Connection(List<GameObject> selectedItems)
+    public TutorialConnection(List<GameObject> selectedItems)
     {
         items = selectedItems.ToArray();
     }
 }
 
-public class GameManager : MonoBehaviour
+public class TutorialGameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static TutorialGameManager Instance;
     public UILineRenderer uiLineRenderer;
     public Canvas canvas;
 
-    [SerializeField] private ModeIndicator modeIndicator;
-    [SerializeField] private GameObject gavelObject; 
-    
-    [SerializeField] private List<CorrectConnection> correctConnections = new List<CorrectConnection>();
-
-    private List<Connection> connections = new List<Connection>();
+    private List<TutorialConnection> connections = new List<TutorialConnection>();
     private List<GameObject> selectedItems = new List<GameObject>();
-
+    [SerializeField] ModeIndicator modeIndicator;
     public bool isEscape;
     public bool isSelected = false;
     public bool connectionMade = false;
@@ -42,19 +31,17 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
-    {
-        if (gavelObject != null)
-            gavelObject.SetActive(false);
-    }
-
     void Update()
     {
         if (!modeIndicator.isThreadMode && (selectedItems.Count > 0 || connections.Count > 0))
+        {
             ClearSelection();
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape) && modeIndicator.isThreadMode)
+        {
             ClearSelection();
+        }
     }
 
     public void OnItemClicked(GameObject item)
@@ -67,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift) && selectedItems.Count >= 2)
         {
-            Connection connection = new Connection(selectedItems);
+            TutorialConnection connection = new TutorialConnection(selectedItems);
             connectionMade = true;
             connections.Add(connection);
 
@@ -82,44 +69,8 @@ public class GameManager : MonoBehaviour
                 Image img = obj.GetComponent<Image>();
                 if (img != null) img.color = Color.white;
             }
-
             selectedItems.Clear();
-
-            CheckAllConnectionsCorrect();
         }
-    }
-
-    private void CheckAllConnectionsCorrect()
-    {   
-        // tutorial
-        if (correctConnections.Count == 0)
-        {
-            if (gavelObject != null)
-                gavelObject.SetActive(true);
-            return;
-        }
-
-        foreach (CorrectConnection correct in correctConnections)
-        {
-            if (!IsConnectionMade(correct.itemA, correct.itemB))
-                return; // at least one correct pair is missing
-        }
-
-        if (gavelObject != null)
-            gavelObject.SetActive(true);
-
-        Debug.Log("correct connections");
-    }
-
-    private bool IsConnectionMade(GameObject a, GameObject b)
-    {
-        foreach (Connection conn in connections)
-        {
-            bool hasA = System.Array.Exists(conn.items, item => item == a);
-            bool hasB = System.Array.Exists(conn.items, item => item == b);
-            if (hasA && hasB) return true;
-        }
-        return false;
     }
 
     void ClearSelection()
@@ -132,20 +83,19 @@ public class GameManager : MonoBehaviour
         selectedItems.Clear();
         connections.Clear();
         uiLineRenderer.ClearAll();
-
-        if (gavelObject != null)
-            gavelObject.SetActive(false); 
     }
 
     Vector2 GetCanvasPosition(RectTransform itemRect)
     {
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, itemRect.position);
+
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             uiLineRenderer.GetComponent<RectTransform>(),
             screenPoint,
             null,
             out Vector2 localPoint
         );
+
         return localPoint;
     }
 }

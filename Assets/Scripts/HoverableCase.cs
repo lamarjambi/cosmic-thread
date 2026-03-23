@@ -11,15 +11,20 @@ public class HoverableCase : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     protected bool hovered = false;
     protected Vector3 baseScale;
     protected float baseAngle = 0f;
-    
     protected Vector3 targetScale;
     protected float targetAngle;
+
+    [Header("Lock Settings")]
+    public bool isLocked = false;
+    public Color lockedColor = new Color(0.4f, 0.4f, 0.4f, 1f);
+    protected SpriteRenderer spriteRenderer;
     
     protected virtual void Start()
     {
         baseScale = transform.localScale;
         targetScale = baseScale;
-        targetAngle = baseAngle;        
+        targetAngle = baseAngle;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     protected virtual void Update()
