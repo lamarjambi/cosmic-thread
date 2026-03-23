@@ -8,27 +8,26 @@ public class MainMenu : MonoBehaviour
 {
     private UIDocument _document;
 
-    private Button _button;
-
     private Button _startButton;
     private Button _settingsButton;
     private Button _quitButton;
 
     private List<Button> _menuButtons = new List<Button>();
 
+    [SerializeField] private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource.Play();
+    }
+
     private void Awake() {
         _document = GetComponent<UIDocument>();
-
         var root = _document.rootVisualElement;
-        Debug.Log($"Root element found: {root != null}");
 
         _startButton = root.Q<Button>("StartButton");
         _settingsButton = root.Q<Button>("SettingsButton");
         _quitButton = root.Q<Button>("QuitButton");
-
-        Debug.Log($"StartButton found: {_startButton != null}");
-        Debug.Log($"SettingsButton found: {_settingsButton != null}");
-        Debug.Log($"QuitButton found: {_quitButton != null}");
 
         _startButton?.RegisterCallback<ClickEvent>(OnStartButtonClick);
         _settingsButton?.RegisterCallback<ClickEvent>(OnSettingsButtonClick);
@@ -42,21 +41,16 @@ public class MainMenu : MonoBehaviour
     }
 
     private void OnStartButtonClick(ClickEvent evt) {
-        Debug.Log("Loading Cases Scene through Loading Screen...");
-        
         PlayerPrefs.SetString("PreviousScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
         SceneManager.LoadScene("LoadingScene");
     }
 
     private void OnSettingsButtonClick(ClickEvent evt) {
-        Debug.Log("Loading Settings Scene...");
         SceneManager.LoadScene("SettingsScene");
     }
 
     private void OnQuitButtonClick(ClickEvent evt) {
-        Debug.Log("Quitting game...");
-        
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
         #else
