@@ -1028,6 +1028,7 @@ GameObject:
   - component: {fileID: 749098423}
   - component: {fileID: 749098422}
   - component: {fileID: 749098421}
+  - component: {fileID: 749098424}
   m_Layer: 5
   m_Name: VideoBackground
   m_TagString: Untagged
@@ -1072,7 +1073,7 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -1080,7 +1081,7 @@ VideoPlayer:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 1
-  m_Url: 
+  m_Url: file://C:/Users/lamoo/OneDrive/Desktop/game-dev/cosmic-thread/Assets/StreamingAssets/CT_background.mp4
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -1125,6 +1126,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749098419}
   m_CullTransparentMesh: 1
+--- !u!114 &749098424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749098419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9101d51cfa64566419e0ef8159ddb1b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &913673844
 GameObject:
   m_ObjectHideFlags: 0
