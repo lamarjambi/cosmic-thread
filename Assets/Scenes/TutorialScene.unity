@@ -369,6 +369,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 335b1a3ddef9d8740bd50dc06a4a53b0, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &6026868
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +685,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 959eaf04439b52348a7eae946d174aa2, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &67585457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1568,6 +1576,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: cd93d20395e6ff14fbede167ddce1612, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!114 &206693111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2172,6 +2184,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 199dfeac25009554ca736cb4544b5c56, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!114 &501544312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2522,6 +2538,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 40c82e78c457358459e7901db593d4e4, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!114 &550732684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2677,6 +2697,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: be077e05127dec344856830040f5bd96, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!114 &604321286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3080,6 +3104,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: ad8d0ed138c0f2b47b17f335ddf21a7f, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &662763590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3577,6 +3605,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: cd35d7781c5c82e4085f273862d9c468, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &1008408132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4074,6 +4106,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 7616d5d506856714ba8bf6c7ab3d14dd, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &1254330111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4684,6 +4720,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: fd4966dec4edd0c4e837ae36e7c21635, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!114 &1296207082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5124,6 +5164,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 12422ddb258f0214aa9b354c5c74da87, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &1467554759
 GameObject:
   m_ObjectHideFlags: 0
@@ -5354,6 +5398,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 5dd1d55025ba1d148a67df024b98d55b, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &1552759849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5512,6 +5560,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 251eabae1f8b28a41a28707737ed6ddb, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &1552901898
 GameObject:
   m_ObjectHideFlags: 0
@@ -5794,6 +5846,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: 49282fa0a069ae3418fc96ab40bbc27e, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &1743454125
 GameObject:
   m_ObjectHideFlags: 0
@@ -5921,7 +5977,7 @@ MonoBehaviour:
   m_text: 'Hold Shift and click the items you believe are connected
 
     (there''s
-    no right asnwer here)'
+    no right answer here)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 31efd17495cb21245a9674c8073ef32c, type: 2}
   m_sharedMaterial: {fileID: -4631682095936540420, guid: 31efd17495cb21245a9674c8073ef32c, type: 2}
@@ -6018,6 +6074,10 @@ MonoBehaviour:
   _startAutomatically: 1
   _soundVolume: 1
   stringArray: []
+  _voiceClip: {fileID: 8300000, guid: cd3dd7325aaa5554d83f6471c33b499e, type: 3}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
 --- !u!1 &1991422134
 GameObject:
   m_ObjectHideFlags: 0

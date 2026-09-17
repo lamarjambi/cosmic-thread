@@ -208,6 +208,13 @@ public class TutorialManager : MonoBehaviour
     {
         if (popUpIndex >= popUps.Length) return;
 
+        // the pop up has to be on before we start it, otherwise the coroutine
+        // (and the voice over with it) never runs on an inactive object
+        for (int i = 0; i < popUps.Length; i++)
+        {
+            popUps[i].SetActive(i == popUpIndex);
+        }
+
         TextAnim anim = popUps[popUpIndex].GetComponent<TextAnim>();
         if (anim != null)
         {
