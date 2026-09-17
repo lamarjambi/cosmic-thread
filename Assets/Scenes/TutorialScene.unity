@@ -368,11 +368,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 335b1a3ddef9d8740bd50dc06a4a53b0, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &6026868
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +424,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wasClicked: 0
+  _audioSource: {fileID: 1009805850}
+  _clickSound: {fileID: 8300000, guid: fe3fd8e7cab4caa4cb9c43aa9e906e3b, type: 3}
+  _clickVolume: 1
 --- !u!114 &6026871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,11 +687,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 959eaf04439b52348a7eae946d174aa2, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &67585457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wasClicked: 0
+  _audioSource: {fileID: 1009805850}
+  _clickSound: {fileID: 8300000, guid: fe3fd8e7cab4caa4cb9c43aa9e906e3b, type: 3}
+  _clickVolume: 1
 --- !u!1 &113695461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,11 +1581,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: cd93d20395e6ff14fbede167ddce1612, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!114 &206693111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2183,11 +2189,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 199dfeac25009554ca736cb4544b5c56, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!114 &501544312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2537,11 +2543,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 40c82e78c457358459e7901db593d4e4, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!114 &550732684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2696,11 +2702,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: be077e05127dec344856830040f5bd96, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!114 &604321286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3103,11 +3109,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: ad8d0ed138c0f2b47b17f335ddf21a7f, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &662763590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3604,11 +3610,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: cd35d7781c5c82e4085f273862d9c468, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &1008408132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3684,6 +3690,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008408132}
   m_CullTransparentMesh: 1
+--- !u!1 &1009805849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009805851}
+  - component: {fileID: 1009805850}
+  m_Layer: 0
+  m_Name: Click
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1009805850
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009805849}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fe3fd8e7cab4caa4cb9c43aa9e906e3b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1009805851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009805849}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5170991, y: 2.7638311, z: -10.020439}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1014200623
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,10 +3921,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1743454126}
   - {fileID: 1058004302}
   - {fileID: 1008408133}
   - {fileID: 315665559}
-  - {fileID: 1743454126}
   - {fileID: 113695462}
   - {fileID: 1272998473}
   - {fileID: 78543960}
@@ -4105,11 +4239,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 7616d5d506856714ba8bf6c7ab3d14dd, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &1254330111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4719,11 +4853,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: fd4966dec4edd0c4e837ae36e7c21635, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!114 &1296207082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5163,11 +5297,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 12422ddb258f0214aa9b354c5c74da87, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &1467554759
 GameObject:
   m_ObjectHideFlags: 0
@@ -5397,11 +5531,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 5dd1d55025ba1d148a67df024b98d55b, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &1552759849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5559,11 +5693,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 251eabae1f8b28a41a28707737ed6ddb, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &1552901898
 GameObject:
   m_ObjectHideFlags: 0
@@ -5845,11 +5979,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: 49282fa0a069ae3418fc96ab40bbc27e, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &1743454125
 GameObject:
   m_ObjectHideFlags: 0
@@ -6073,11 +6207,11 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
-  stringArray: []
   _voiceClip: {fileID: 8300000, guid: cd3dd7325aaa5554d83f6471c33b499e, type: 3}
   _matchTypingToVoice: 1
   _voiceVolume: 1
   _voiceTailPadding: 0
+  stringArray: []
 --- !u!1 &1991422134
 GameObject:
   m_ObjectHideFlags: 0
@@ -6286,3 +6420,4 @@ SceneRoots:
   - {fileID: 17127920}
   - {fileID: 2038789038}
   - {fileID: 2029277706}
+  - {fileID: 1009805851}
