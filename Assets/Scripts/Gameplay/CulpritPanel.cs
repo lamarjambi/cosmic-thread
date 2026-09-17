@@ -1,7 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CulpritPanel : MonoBehaviour
 {
@@ -11,10 +8,8 @@ public class CulpritPanel : MonoBehaviour
 
     [Header("Result")]
     [SerializeField] GameObject resultPanel;
-    [SerializeField] GameObject jailImage;
-    [SerializeField] GameObject bloodImage;
 
-    [SerializeField] GameObject correctCulprit; 
+    [SerializeField] GameObject correctCulprit;
     
     private CountdownTimer timer;
 
@@ -37,14 +32,6 @@ public class CulpritPanel : MonoBehaviour
     public void OnCulpritSelected(GameObject selected)
     {
         bool correct = selected == correctCulprit;
-        StartCoroutine(ShowResultAndTransition(correct));
-    }
-
-    private IEnumerator ShowResultAndTransition(bool correct)
-    {
-        resultPanel.SetActive(true);
-        jailImage.SetActive(correct);
-        bloodImage.SetActive(!correct);
 
         if (correct)
         {
@@ -53,7 +40,6 @@ public class CulpritPanel : MonoBehaviour
             Debug.Log("ZiggyCaseCompleted set to: " + PlayerPrefs.GetInt("ZiggyCaseCompleted"));
         }
 
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("CasesScene");
+        resultPanel.GetComponent<ResultPanel>().Show(correct);
     }
 }

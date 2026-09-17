@@ -4,9 +4,12 @@ using System.Collections;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public TMP_Text timerText; 
-    public float timeRemaining = 120f; 
+    public TMP_Text timerText;
+    public float timeRemaining = 120f;
     public bool timerIsRunning = false;
+
+    [Header("Time Up")]
+    [SerializeField] ResultPanel resultPanel;
 
     private void Start()
     {
@@ -28,6 +31,11 @@ public class CountdownTimer : MonoBehaviour
                 Debug.Log("no more TIME!");
                 timeRemaining = 0;
                 timerIsRunning = false;
+                DisplayTime(0f);
+
+                // ran out of time = loss, show the blood screen
+                if (resultPanel != null)
+                    resultPanel.Show(false);
             }
         }
     }

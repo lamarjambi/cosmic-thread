@@ -1475,6 +1475,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   culpritPanel: {fileID: 58128865}
+  jailImage: {fileID: 2041427509}
+  bloodImage: {fileID: 1291631503}
+  fadeInDuration: 1.5
+  holdDuration: 3
+  nextScene: CasesScene
 --- !u!114 &689002133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,6 +1764,7 @@ MonoBehaviour:
   timerText: {fileID: 777946210}
   timeRemaining: 120
   timerIsRunning: 0
+  resultPanel: {fileID: 689002132}
 --- !u!114 &777946210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3141,7 +3147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483d29a99edfa0943ae0b4b72d36e056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: cfff8c7d64a81aa49996edcbc93bc83a, type: 2}
+  m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3415,8 +3421,6 @@ MonoBehaviour:
   countdownTimer: {fileID: 777946207}
   gavel: {fileID: 1896332248}
   resultPanel: {fileID: 689002130}
-  jailImage: {fileID: 2041427509}
-  bloodImage: {fileID: 1291631503}
   correctCulprit: {fileID: 1640349598}
 --- !u!114 &1681595257
 MonoBehaviour:
