@@ -13,8 +13,17 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     [Header("Zoom Settings")]
     [SerializeField] private float zoomDuration = 0.35f;
     [SerializeField] private AnimationCurve zoomCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [SerializeField] private float zoomOutDuration = 0.3f;
+    [Tooltip("Hide this card on the board while it is being inspected, as if it were picked up.")]
+    [SerializeField] private bool hideCardWhileZoomed = true;
 
     private Coroutine _zoomCoroutine;
+    private Vector2 _panelAnchoredPos;
+    private bool _panelPosCached;
+    private bool _isClosing;
+    private CanvasGroup _panelGroup;
+    private CanvasGroup _cardGroup;
+    private float _cardAlpha = 1f;
 
     [Header("Flip Settings")]
     [SerializeField] private Sprite cardBackSprite; // the card's back face
@@ -23,6 +32,8 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     private bool isFlipped = false;
     void Start()
     {
+        CachePanelPose();
+
         if (evidencePanel != null)
             evidencePanel.SetActive(false);
     }
@@ -46,6 +57,17 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
         if (evidenceImage != null && evidenceSprite != null)
             evidenceImage.sprite = evidenceSprite;
 
+        isFlipped = false;
+        _isClosing = false;
+
+        // A previous close may have been interrupted mid-flight; put the card back first.
+        CachePanelPose();
+        if (_panelPosCached && evidenceImage != null)
+            evidenceImage.rectTransform.anchoredPosition = _panelAnchoredPos;
+
+        if (_panelGroup != null) _panelGroup.alpha = 1f;
+
+        SetCardOnBoardVisible(false);
         evidencePanel.SetActive(true);
 
         if (_zoomCoroutine != null) StopCoroutine(_zoomCoroutine);
@@ -109,9 +131,134 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
 
     public void CloseEvidence()
     {
+        if (_isClosing) return;
+
         if (_zoomCoroutine != null) StopCoroutine(_zoomCoroutine);
+
+        if (evidenceImage == null || evidencePanel == null || !evidencePanel.activeInHierarchy)
+        {
+            FinishClose();
+            return;
+        }
+
+        _isClosing = true;
+        _zoomCoroutine = StartCoroutine(ZoomOut());
+    }
+
+    // Shrinks the zoomed card back toward the card it came from on the board,
+    // then hides the panel and restores it for the next open.
+    private IEnumerator ZoomOut()
+    {
+        RectTransform rt = evidenceImage.rectTransform;
+
+        Vector3 startScale = rt.localScale;
+        Vector2 startPos = rt.anchoredPosition;
+        Vector2 endPos = startPos + GetOffsetToCard(rt);
+        float startAlpha = _panelGroup != null ? _panelGroup.alpha : 1f;
+
+        float elapsed = 0f;
+        while (elapsed < zoomOutDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = zoomCurve.Evaluate(Mathf.Clamp01(elapsed / zoomOutDuration));
+
+            rt.localScale = Vector3.LerpUnclamped(startScale, Vector3.zero, t);
+            rt.anchoredPosition = Vector2.LerpUnclamped(startPos, endPos, t);
+
+            if (_panelGroup != null)
+                _panelGroup.alpha = Mathf.Lerp(startAlpha, 0f, t);
+
+            yield return null;
+        }
+
+        _zoomCoroutine = null;
+        FinishClose();
+    }
+
+    private void FinishClose()
+    {
         if (evidenceImage != null)
-            evidenceImage.rectTransform.localScale = Vector3.one; 
-        evidencePanel?.SetActive(false);
+        {
+            RectTransform rt = evidenceImage.rectTransform;
+            rt.localScale = Vector3.one;
+            if (_panelPosCached) rt.anchoredPosition = _panelAnchoredPos;
+        }
+
+        if (_panelGroup != null) _panelGroup.alpha = 1f;
+
+        if (evidencePanel != null) evidencePanel.SetActive(false);
+        SetCardOnBoardVisible(true);
+        _isClosing = false;
+    }
+
+    // Takes the card off the board while it is being inspected, and puts it back when
+    // the zoom-out lands. The visuals are hidden rather than the GameObject disabled,
+    // since this component's coroutines live on that same object.
+    private void SetCardOnBoardVisible(bool visible)
+    {
+        if (!hideCardWhileZoomed) return;
+
+        if (_cardGroup == null)
+        {
+            _cardGroup = GetComponent<CanvasGroup>();
+            if (_cardGroup == null && transform is RectTransform)
+                _cardGroup = gameObject.AddComponent<CanvasGroup>();
+
+            if (_cardGroup != null) _cardAlpha = _cardGroup.alpha;
+        }
+
+        if (_cardGroup != null)
+        {
+            _cardGroup.alpha = visible ? _cardAlpha : 0f;
+            _cardGroup.blocksRaycasts = visible;
+            _cardGroup.interactable = visible;
+            return;
+        }
+
+        // Non-UI card: fall back to toggling its renderers.
+        foreach (Renderer r in GetComponentsInChildren<Renderer>(true))
+            r.enabled = visible;
+    }
+
+    // Remembers the panel's resting pose the first time it opens, so the zoom-out
+    // can move the card away and still be put back for the next open.
+    private void CachePanelPose()
+    {
+        if (_panelGroup == null && evidencePanel != null)
+            _panelGroup = evidencePanel.GetComponent<CanvasGroup>();
+
+        if (_panelPosCached || evidenceImage == null) return;
+
+        _panelAnchoredPos = evidenceImage.rectTransform.anchoredPosition;
+        _panelPosCached = true;
+    }
+
+    // Distance, in the zoomed image's own anchored space, from where it sits now
+    // to where this card sits on the board.
+    private Vector2 GetOffsetToCard(RectTransform rt)
+    {
+        RectTransform parent = rt.parent as RectTransform;
+        if (parent == null) return Vector2.zero;
+
+        Camera uiCamera = CameraFor(evidenceImage.canvas);
+        Camera cardCamera = CameraFor(GetComponentInParent<Canvas>());
+
+        Vector2 cardScreen = RectTransformUtility.WorldToScreenPoint(cardCamera, transform.position);
+        Vector2 imageScreen = RectTransformUtility.WorldToScreenPoint(uiCamera, rt.position);
+
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, cardScreen, uiCamera, out Vector2 cardLocal) ||
+            !RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, imageScreen, uiCamera, out Vector2 imageLocal))
+            return Vector2.zero;
+
+        return cardLocal - imageLocal;
+    }
+
+    // Overlay canvases project with a null camera; every other mode needs its own.
+    private static Camera CameraFor(Canvas canvas)
+    {
+        if (canvas == null) return null;
+
+        Canvas root = canvas.rootCanvas != null ? canvas.rootCanvas : canvas;
+        return root.renderMode == RenderMode.ScreenSpaceOverlay ? null : root.worldCamera;
     }
 }
