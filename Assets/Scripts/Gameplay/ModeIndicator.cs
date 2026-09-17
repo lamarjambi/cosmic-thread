@@ -9,6 +9,26 @@ public class ModeIndicator : MonoBehaviour
     public float flashDuration = 0.3f;
     public int flashCount = 2;
 
+    [Header("Mode Switch Sound")]
+    [SerializeField] private AudioSource whooshAudioSource;
+    [Tooltip("Played when the player toggles between Inspect and Thread mode.")]
+    [SerializeField] private AudioClip whoosh;
+    [SerializeField] [Range(0f, 1f)] private float whooshVolume = 1f;
+
+    private void Awake()
+    {
+        if (whooshAudioSource == null)
+        {
+            whooshAudioSource = GetComponent<AudioSource>();
+
+            if (whooshAudioSource == null)
+            {
+                whooshAudioSource = gameObject.AddComponent<AudioSource>();
+                whooshAudioSource.playOnAwake = false;
+            }
+        }
+    }
+
     private void Start()
     {
         UpdateModeText();
@@ -20,6 +40,10 @@ public class ModeIndicator : MonoBehaviour
         {
             isThreadMode = !isThreadMode;
             UpdateModeText();
+
+            if (whoosh != null && whooshAudioSource != null)
+                whooshAudioSource.PlayOneShot(whoosh, whooshVolume);
+
             StopCoroutine(nameof(FlashText)); 
             StartCoroutine(nameof(FlashText));
         }

@@ -2965,6 +2965,9 @@ MonoBehaviour:
   modeText: {fileID: 654294777}
   flashDuration: 0.3
   flashCount: 2
+  whooshAudioSource: {fileID: 0}
+  whoosh: {fileID: 0}
+  whooshVolume: 1
 --- !u!1 &658565331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3728,7 +3731,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fe3fd8e7cab4caa4cb9c43aa9e906e3b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4404,6 +4407,7 @@ MonoBehaviour:
   timerText: {fileID: 1254330114}
   timeRemaining: 120
   timerIsRunning: 0
+  resultPanel: {fileID: 0}
 --- !u!1 &1264910142
 GameObject:
   m_ObjectHideFlags: 0
@@ -5158,6 +5162,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   culpritPanel: {fileID: 1344869978}
+  jailImage: {fileID: 0}
+  bloodImage: {fileID: 0}
+  fadeInDuration: 1.5
+  holdDuration: 3
+  nextScene: CasesScene
 --- !u!1 &1412530176
 GameObject:
   m_ObjectHideFlags: 0
