@@ -1004,6 +1004,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  zoomOutDuration: 0.3
+  hideCardWhileZoomed: 1
+  pickupAudioSource: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 1797933794281d544adc3412667bb636, type: 3}
+  pickupVolume: 1
   cardBackSprite: {fileID: 21300000, guid: 2027b431dc26ed6468005c786976460c, type: 3}
   flipDuration: 0.4
 --- !u!114 &78543967
@@ -1392,6 +1397,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  zoomOutDuration: 0.3
+  hideCardWhileZoomed: 1
+  pickupAudioSource: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 1797933794281d544adc3412667bb636, type: 3}
+  pickupVolume: 1
   cardBackSprite: {fileID: 21300000, guid: 0c167760a4f2cf648968c94f7b74a100, type: 3}
   flipDuration: 0.4
 --- !u!114 &113695469
@@ -4706,6 +4716,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  zoomOutDuration: 0.3
+  hideCardWhileZoomed: 1
+  pickupAudioSource: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 1797933794281d544adc3412667bb636, type: 3}
+  pickupVolume: 1
   cardBackSprite: {fileID: 21300000, guid: 36ee8f3b382e757439051a5890aad5f0, type: 3}
   flipDuration: 0.4
 --- !u!114 &1272998480

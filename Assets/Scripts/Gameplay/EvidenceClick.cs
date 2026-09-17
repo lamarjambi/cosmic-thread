@@ -25,11 +25,32 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
     private CanvasGroup _cardGroup;
     private float _cardAlpha = 1f;
 
+    [Header("Pickup Sound")]
+    [SerializeField] private AudioSource pickupAudioSource;
+    [Tooltip("Played when this item is lifted off the board. Paper vs plastic, per item.")]
+    [SerializeField] private AudioClip pickupSound;
+    [SerializeField] [Range(0f, 1f)] private float pickupVolume = 1f;
+
     [Header("Flip Settings")]
     [SerializeField] private Sprite cardBackSprite; // the card's back face
     [SerializeField] private float flipDuration = 0.4f;
 
     private bool isFlipped = false;
+
+    private void Awake()
+    {
+        if (pickupAudioSource == null)
+        {
+            pickupAudioSource = GetComponent<AudioSource>();
+
+            if (pickupAudioSource == null)
+            {
+                pickupAudioSource = gameObject.AddComponent<AudioSource>();
+                pickupAudioSource.playOnAwake = false;
+            }
+        }
+    }
+
     void Start()
     {
         CachePanelPose();
@@ -66,6 +87,9 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
             evidenceImage.rectTransform.anchoredPosition = _panelAnchoredPos;
 
         if (_panelGroup != null) _panelGroup.alpha = 1f;
+
+        if (pickupSound != null && pickupAudioSource != null)
+            pickupAudioSource.PlayOneShot(pickupSound, pickupVolume);
 
         SetCardOnBoardVisible(false);
         evidencePanel.SetActive(true);
@@ -215,13 +239,10 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // Non-UI card: fall back to toggling its renderers.
         foreach (Renderer r in GetComponentsInChildren<Renderer>(true))
             r.enabled = visible;
     }
 
-    // Remembers the panel's resting pose the first time it opens, so the zoom-out
-    // can move the card away and still be put back for the next open.
     private void CachePanelPose()
     {
         if (_panelGroup == null && evidencePanel != null)
@@ -233,8 +254,6 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
         _panelPosCached = true;
     }
 
-    // Distance, in the zoomed image's own anchored space, from where it sits now
-    // to where this card sits on the board.
     private Vector2 GetOffsetToCard(RectTransform rt)
     {
         RectTransform parent = rt.parent as RectTransform;
@@ -252,8 +271,6 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
 
         return cardLocal - imageLocal;
     }
-
-    // Overlay canvases project with a null camera; every other mode needs its own.
     private static Camera CameraFor(Canvas canvas)
     {
         if (canvas == null) return null;
