@@ -66,6 +66,8 @@ public class TextAnim : MonoBehaviour
 
         _audioSource.playOnAwake = false;
         _audioSource.loop = false;
+
+        VolumeSettings.Route(_audioSource);
     }
 
     /// <summary>
@@ -227,6 +229,8 @@ public class TextAnim : MonoBehaviour
             _voiceSource = host.AddComponent<AudioSource>();
             _voiceSource.playOnAwake = false;
             _voiceSource.loop = false;
+
+            VolumeSettings.Route(_voiceSource);
         }
 
         _voiceSource.Stop(); // whatever was talking before stops right here

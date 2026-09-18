@@ -49,6 +49,8 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
                 pickupAudioSource.playOnAwake = false;
             }
         }
+
+        VolumeSettings.Route(pickupAudioSource);
     }
 
     void Start()
@@ -81,7 +83,6 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
         isFlipped = false;
         _isClosing = false;
 
-        // A previous close may have been interrupted mid-flight; put the card back first.
         CachePanelPose();
         if (_panelPosCached && evidenceImage != null)
             evidenceImage.rectTransform.anchoredPosition = _panelAnchoredPos;
@@ -169,8 +170,6 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
         _zoomCoroutine = StartCoroutine(ZoomOut());
     }
 
-    // Shrinks the zoomed card back toward the card it came from on the board,
-    // then hides the panel and restores it for the next open.
     private IEnumerator ZoomOut()
     {
         RectTransform rt = evidenceImage.rectTransform;
@@ -215,9 +214,6 @@ public class EvidenceClick : MonoBehaviour, IPointerClickHandler
         _isClosing = false;
     }
 
-    // Takes the card off the board while it is being inspected, and puts it back when
-    // the zoom-out lands. The visuals are hidden rather than the GameObject disabled,
-    // since this component's coroutines live on that same object.
     private void SetCardOnBoardVisible(bool visible)
     {
         if (!hideCardWhileZoomed) return;

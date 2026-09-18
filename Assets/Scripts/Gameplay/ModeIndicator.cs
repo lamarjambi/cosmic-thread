@@ -11,7 +11,6 @@ public class ModeIndicator : MonoBehaviour
 
     [Header("Mode Switch Sound")]
     [SerializeField] private AudioSource whooshAudioSource;
-    [Tooltip("Played when the player toggles between Inspect and Thread mode.")]
     [SerializeField] private AudioClip whoosh;
     [SerializeField] [Range(0f, 1f)] private float whooshVolume = 1f;
 
@@ -27,6 +26,8 @@ public class ModeIndicator : MonoBehaviour
                 whooshAudioSource.playOnAwake = false;
             }
         }
+
+        VolumeSettings.Route(whooshAudioSource);
     }
 
     private void Start()

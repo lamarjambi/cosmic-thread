@@ -330,6 +330,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!114 &171702117
 MonoBehaviour:
@@ -508,6 +512,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!114 &531796271
 MonoBehaviour:
@@ -879,6 +887,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!114 &702806157
 MonoBehaviour:
@@ -1377,6 +1389,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!114 &1076463568
 MonoBehaviour:
@@ -1554,6 +1570,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!114 &1254204850
 MonoBehaviour:
@@ -1913,6 +1933,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!114 &1797149042
 MonoBehaviour:
@@ -2174,6 +2198,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!95 &1856327948
 Animator:
@@ -2196,6 +2224,63 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &1925331431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 953.03284
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 503.12762
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.4210514
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 634256537242881280, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 994771717941522969, guid: ee687f4627782d14f85d5acb99447611, type: 3}
+      propertyPath: m_Name
+      value: AudioSettings
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee687f4627782d14f85d5acb99447611, type: 3}
 --- !u!1 &2006355690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2275,6 +2360,10 @@ MonoBehaviour:
   _playSoundOnEachCharacter: 1
   _startAutomatically: 1
   _soundVolume: 1
+  _voiceClip: {fileID: 0}
+  _matchTypingToVoice: 1
+  _voiceVolume: 1
+  _voiceTailPadding: 0
   stringArray: []
 --- !u!114 &2006355694
 MonoBehaviour:
@@ -2385,3 +2474,4 @@ SceneRoots:
   - {fileID: 1451262393}
   - {fileID: 642274235}
   - {fileID: 1434647034}
+  - {fileID: 1925331431}

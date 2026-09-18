@@ -34,6 +34,8 @@ public class JamxCase : HoverableCase, IPointerClickHandler
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
 
+        VolumeSettings.Route(audioSource);
+
         if (descriptionText != null)
             descriptionText.text = description;
         if (descriptionPanel != null)

@@ -22,6 +22,8 @@ public class TextBubbleClick : MonoBehaviour, IPointerClickHandler
                 _audioSource.playOnAwake = false;
             }
         }
+
+        VolumeSettings.Route(_audioSource);
     }
 
     public void OnPointerClick(PointerEventData eventData)
